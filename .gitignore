@@ -1,0 +1,52 @@
+#Dotfiles
+.npm
+.cache
+.config
+.docker
+.gem
+.local
+.pgAdmin4*
+.ssh
+.lesshst
+.viminfo
+.bash_history
+
+#Folders
+AppData
+Contacts
+Desktop
+Documents
+Downloads
+Favorites
+Intel
+3D Objects
+Application Data
+Cookies
+IntelGraphicsProfiles
+Local Settings
+MicrosoftEdgeBackups
+My Documents
+Links
+Music
+OneDrive
+Pictures
+Saved Games
+Searches
+Tracing
+Videos
+Tor Browser
+NetHood
+PrintHood
+Recent
+SendTo
+Start Menu
+Templates
+
+#Misc
+scoop
+projects
+vimfiles
+keepassxc*
+cpuz*
+ntuser*
+NTUSER*
