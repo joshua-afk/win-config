@@ -1,15 +1,33 @@
 #Dotfiles
-.npm
+.bash_profile
+.bashrc
+.bundle
+.dotnet
+.git-credentials
+.bash_history
 .cache
 .config
 .docker
 .gem
-.local
-.pgAdmin4*
-.ssh
 .lesshst
+.local
+.minttyrc
+.node-gyp
+.node_repl_history
+.npm
+.npmrc
+.nvim
+.oh-my-zsh
+.pgAdmin4*
+.pyenv
+.ssh
+.uru
+.vim
 .viminfo
-.bash_history
+.vscode
+.zcompdump*
+.zsh*
+.histfile
 
 #Folders
 AppData
@@ -41,6 +59,8 @@ Recent
 SendTo
 Start Menu
 Templates
+autohotkey
+EurekaLog
 
 #Misc
 scoop
@@ -50,3 +70,11 @@ keepassxc*
 cpuz*
 ntuser*
 NTUSER*
+edb*
+win32yank.exe
+gbash.bat
+mercurial.ini
+rbs.bat
+_viminfo
+
+github-token.txt
