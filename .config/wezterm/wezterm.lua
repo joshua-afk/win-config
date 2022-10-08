@@ -1,5 +1,5 @@
 local wezterm = require 'wezterm';
-local catppuccin = require("colors/catppuccin").setup {}
+-- local catppuccin = require("colors/catppuccin").setup {}
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     -- Configs for Windows only
@@ -28,8 +28,8 @@ return {
     -- Fonts
     font_size   = 10,
     line_height = 1.1,
-    --font = wezterm.font('DroidSansMono Nerd Font Mono'),
-    font = wezterm.font('Iosevka'),
+    -- font = wezterm.font('DroidSansMono Nerd Font Mono'),
+    -- font = wezterm.font('Iosevka'),
     -- font = wezterm.font('Consolas'),
     -- initial_rows = 40,
     -- initial_cols = 200,
@@ -43,8 +43,8 @@ return {
     -- initial_cols = 165,
     cursor_blink_rate = 800,
     default_cursor_style = "BlinkingUnderline",
-	colors = catppuccin,
+    -- colors = catppuccin,
     keys = {
-        {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
+      {key="n", mods="SHIFT|CTRL", action="ToggleFullScreen"},
     }
 }

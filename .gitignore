@@ -6,7 +6,6 @@
 .git-credentials
 .bash_history
 .cache
-.config
 .docker
 .gem
 .lesshst
