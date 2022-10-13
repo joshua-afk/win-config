@@ -1,37 +1,37 @@
 [user]
-  email = jr.velasquez@jeonsoft.com
-  name = Joshua Ryan V. Velasquez
+    email = jr.velasquez@jeonsoft.com
+    name = Joshua Ryan V. Velasquez
 [github]
-  user = joshua-afk
+    user = joshua-afk
 [core]
-  editor = nvim
-  autocrlf = true
-  excludesfile = C:\\Users\\jr.velasquez\\Documents\\gitignore_global.txt
+    editor = nvim
+    autocrlf = true
+    excludesfile = 
 [alias]
-  fuckit = reset --hard
-  dontfuck = reset --soft
-  ci = commit
-  p = push
-  st = status
-  cm = commit -m
-  co = checkout
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  plog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  cfc = show --pretty --name-only
+    fuckit = reset --hard
+    dontfuck = reset --soft
+    ci = commit
+    p = push
+    st = status
+    cm = commit -m
+    co = checkout
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    plog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    cfc = show --pretty --name-only
 [color]
-  ui = true
-  branch = auto
-  diff = auto
-  interactive = auto
-  status = auto
+    ui = true
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
 [credential]
-  helper = store
-  helper = cache --timeout=3600
+    helper = store
+    helper = cache --timeout=3600
 [credential "http://main:1880"]
-  provider = generic
+    provider = generic
 [difftool "sourcetree"]
-  cmd = '' \"$LOCAL\" \"$REMOTE\"
+    cmd = 'C:/Program Files/KDiff3/kdiff3.exe' \"$LOCAL\" \"$REMOTE\"
 [mergetool "sourcetree"]
-  cmd = "'' "
-  trustExitCode = true
+    cmd = 'C:/Program Files/KDiff3/kdiff3.exe' \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+    trustExitCode = true
