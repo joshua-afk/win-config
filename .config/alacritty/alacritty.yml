@@ -1,0 +1,29 @@
+window: 
+  decorations: full
+  opacity: 0.93
+  padding:
+    x: 3
+    y: 3
+
+shell:
+  program: "C:\\Windows\\system32\\wsl.exe -d Ubuntu-20.04"
+  args:
+    - --cd ~
+
+font:
+  size: 10.5
+  family: 'CaskaydiaCove Nerd Font'
+  offset:
+      x: 0    # For letter spacing.
+      y: 1    # For line spacing. 
+
+  normal:
+    family: 'CaskaydiaCove Nerd Font'
+
+  bold:
+    family: 'CaskaydiaCove Nerd Font'
+    style: Bold
+
+cursor:
+  style: Underline
+  blinking: on
