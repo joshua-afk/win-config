@@ -33,14 +33,17 @@ return {
     -- font = wezterm.font('Iosevka'),
     -- font = wezterm.font('Consolas'),
 
-    -- initial_cols = 165,
     -- 24 inch monitor config
-    -- initial_rows = 46,
-    -- initial_cols = 210,
+    font_size   = 10,
+    line_height = 1.1,
+    initial_rows = 55,
+    initial_cols = 236,
 
     -- 1366 x 768 (15 inch) resolution display
-    initial_rows = 33,
-    initial_cols = 146,
+    -- font_size   = 10,
+    -- line_height = 1.1,
+    -- initial_rows = 38,
+    -- initial_cols = 165,
     --
     cursor_blink_rate = 800,
     default_cursor_style = "BlinkingUnderline",
