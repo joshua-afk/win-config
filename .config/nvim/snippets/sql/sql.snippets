@@ -1,0 +1,168 @@
+# =========================
+# CONTENTS
+#
+#  =BASIC
+#  =COLUMNS
+#  =TRICKS
+#  =CUSTOM
+#
+# =========================
+
+# ==BASIC==
+snippet where
+		SELECT *
+		FROM table_name
+		WHERE columnName = 0
+snippet insert
+		INSERT INTO table_name (column1)
+		VALUES (value1)
+snippet update
+		UPDATE table_name
+		SET column1 = value1
+		WHERE condition
+snippet massupdate
+		UPDATE table_name
+		SET column1 = value1
+		WHERE Id IN (id1, id2)
+snippet delfrom
+		DELETE FROM table_name WHERE condition
+snippet like
+		SELECT *
+		FROM table_name
+		WHERE columnName LIKE '%keyword%'
+snippet addcol
+		IF dbo.fnIsColumnExists('tblLeaveFiling', 'CustomJTIIsLeavePlanRejected') = 0
+				ALTER TABLE tblLeaveFiling
+				ADD CustomJTIIsLeavePlanRejected BIT NOT NULL CONSTRAINT [DF_tblLeaveFiling_CustomJTIIsLeavePlanRejected] DEFAULT(0)
+		GO
+snippet delcol
+		ALTER TABLE tblCustomers
+		DROP COLUMN Email
+snippet case
+		CASE
+				WHEN condition1 THEN result1
+				WHEN condition2 THEN result2
+				WHEN conditionN THEN resultN
+				ELSE result
+		END
+snippet case-where 
+		WHERE co.DTEntered = CASE 
+															WHEN LEN('blah') = 0 
+																	THEN co.DTEntered 
+															ELSE '2011-01-01' 
+												 END 
+snippet temptable
+		DECLARE @tmp TABLE(Id INT IDENTITY(1,1), Name VARCHAR(100), IsPriority BIT)
+snippet checksp
+		sp_helptext uspImportEmployees
+#  =COLUMNS
+snippet int
+		[Id] INT IDENTITY (1, 1) NOT NULL
+		EmployeeId INT NOT NULL
+snippet varchar
+	  Description VARCHAR(250) NULL
+snippet datetime
+		CreationDate DATETIME NOT NULL
+snippet image
+		File IMAGE NULL
+snippet bit
+    IsActive BIT NOT NULL DEFAULT (0)
+#  =TRICKS
+snippet createsnapshot
+		DECLARE @DBName VARCHAR(100)
+		DECLARE @PhysicalNamePath VARCHAR(500)
+		SET @DBName = 'DB_Payroll'
+
+		DECLARE @DBSnapshotName VARCHAR(100)
+		SET @DBSnapshotName = @DBName  + '_ss'
+
+		DECLARE @query VARCHAR(500)
+
+		SELECT @PhysicalNamePath = LEFT(smf.physical_name, LEN(smf.physical_name) - CHARINDEX('\', REVERSE(smf.physical_name))) + '\' + @DBName
+		FROM sys.databases sd
+			INNER JOIN sys.master_files smf ON sd.database_id = smf.database_id
+		WHERE smf.type_desc = 'ROWS'
+			AND sd.name = @DBName
+
+		SET @query = 'CREATE DATABASE [' + @DBSnapshotName + ']
+				ON ( NAME = jps2007_Data, FILENAME = ''' + @PhysicalNamePath + ''')
+				AS SNAPSHOT OF [' + @DBName + ']'
+
+		EXEC(@query)
+
+
+		GO
+snippet restoresnapshot
+		USE [master];
+		DECLARE @DBName VARCHAR(100)
+		SET @DBName = 'DB_Payroll'
+
+		DECLARE @kill varchar(8000) = '';  
+		SELECT @kill = @kill + 'kill ' + CONVERT(varchar(5), session_id) + ';'  
+		FROM sys.dm_exec_sessions a
+		WHERE database_id  = db_id(@DBName)
+
+		EXEC(@kill);
+
+		DECLARE @DBSnapshotName VARCHAR(100)
+		SET @DBSnapshotName = @DBName  + '_ss'
+
+		DECLARE @query VARCHAR(500)
+		IF EXISTS (SELECT database_id FROM sys.databases WHERE (name = @DBSnapshotName AND source_database_id IS NOT NULL))
+		BEGIN
+			SET @query = 'RESTORE DATABASE [' + @DBName + '] from 
+							DATABASE_SNAPSHOT = ''' + @DBSnapshotName + ''''
+			EXEC(@query)
+		END
+
+
+		GO
+snippet createstoredproc
+		IF OBJECT_ID('uspStoredProc') IS NOT NULL DROP PROCEDURE [uspStoredProc]
+		GO
+		SET ANSI_NULLS ON
+		GO
+		SET QUOTED_IDENTIFIER ON
+		GO
+		CREATE PROCEDURE [dbo].[uspStoredProc](@CompanyId INT)
+		AS
+		SET NOCOUNT ON
+
+		-- code here
+
+		GO
+snippet createtable
+		IF OBJECT_ID('tblTable') IS NULL
+		BEGIN
+			CREATE TABLE [dbo].[tblTable] (
+				[Id] INT IDENTITY (1, 1) NOT NULL
+
+			CONSTRAINT [PK_tblTable_Id] PRIMARY KEY CLUSTERED
+				([Id]) ON [PRIMARY]) ON [PRIMARY]
+		END
+
+
+		GO
+snippet createview
+		IF OBJECT_ID('viwView') IS NOT NULL DROP VIEW [viwView]
+		GO
+		SET ANSI_NULLS ON
+		GO
+		SET QUOTED_IDENTIFIER ON
+		GO
+		CREATE VIEW [dbo].[viwView]
+		AS
+
+			SELECT *
+			FROM tblEmployees
+
+
+		GO
+# ==CUSTOM==
+snippet formevents
+		INSERT INTO tblPPHCustomizationFormEvents(FormName, Url)
+		SELECT 'UserAccounts', '/forms/custom_ess_manager_user_accounts'
+		WHERE NOT EXISTS (SELECT Id FROM tblPPHCustomizationFormEvents WHERE FormName = 'UserAccounts' AND Url = '/forms/custom_ess_manager_user_accounts') 
+
+
+		GO

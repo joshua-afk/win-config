@@ -1,0 +1,213 @@
+# ==================================== #
+# CONTENTS
+#
+#  ==LARAVEL-BLADE-TEMPLATES
+#
+#  ==LARAVEL-BLADE-CONTROL-STRUCTURES
+#    =IF-STATEMENTS
+#    =SWITCH-STATEMENTS
+#    =LOOPS
+#    =THE-LOOP-VARIABLES
+#    =COMMENTS
+#    =PHP
+#
+#  ==LARAVEL-BLADE-FORMS
+#    =CSRF-FIELD
+#    =METHOD-FIELD
+#    =VALIDATION-ERRORS
+#
+#  ==LARAVEL-BLADE-TEMPLATES-CUSTOM
+#
+# ==================================== #
+
+# ==================================== #
+# ==LARAVEL-BLADE-TEMPLATES==
+# ==================================== #
+snippet b:extends "Laravel Blade Snippet"
+		@extends('$1')
+snippet b:yield "Laravel Blade Snippet"
+		@yield('$1')
+snippet b:section "Laravel Blade Snippet"
+		@section('$1')
+			$2
+		@endsection
+snippet b:section-show "Laravel Blade Snippet"
+		@section('$1')
+			$2
+		@show
+snippet b:push "Laravel Blade Snippets"
+		@push('$1')
+			$2
+		@endpush
+snippet b:stack "Laravel Blade Snippets"
+		@stack('$1')
+snippet b:inject "Laravel Blade Snippets"
+		@inject('$1metircs', '$2App\Services\MetricesServices')
+snippet b:comment "Laravel Blade Snippets"
+		{{-- $1 --}}
+snippet b:echo "Laravel Blade Snippets"
+		{{ $1 }}
+snippet b:echo-html "Laravel Blade Snippets"
+		{!! ${1:$variable} !!}
+snippet b:echo-raw "Laravel Blade Snippets"
+		@{{ ${1:$variable} }}
+snippet b:verbatim "Laravel Blade Snippets"
+		@verbatim
+			$1
+		@endverbatim
+snippet b:component "Laravel Blade Snippets"
+		@component('$1', ['key' => 'value'])	
+			$slot
+		@endcomponent
+snippet b:slot "Laravel Blade Snippets"
+		@slot('$1')
+			$2
+		@endslot
+snippet b:lang "Laravel Blade Snippets"
+		@lang('messages.welcome')
+snippet b:php "Laravel Blade Snippets"
+		@php
+			$1
+		@endphp
+snippet b:route "Laravel Blade Others" i 
+		{{ route('$1') }}
+snippet b:url "Laravel Blade Others" i 
+		{{ url('$1') }}
+snippet b:asset "Laravel Blade Others" i 
+		{{ asset('$1') }}
+# ==================================== #
+# ==LARAVEL-BLADE-CONTROL-STRUCTURES==
+# ==================================== #
+
+# ==IF-STATEMENTS==
+snippet b:if "Laravel Blade Condition Snippets"
+		@if ($1)
+			$2
+		@endif
+snippet b:if-else "Laravel Blade Condition Snippets"
+		@if ($1)
+			$2
+		@else
+			$3
+		@endif
+snippet b:unless "Laravel Blade Condition Snippets"
+		@unless ($1)
+			$2
+		@endunless
+snippet b:isset "Laravel Blade Condition Snippets"
+		@isset(${1:$variable})
+		@endisset
+snippet b:empty "Laravel Blade Condition Snippets"
+		@empty(${1:$$variable})
+		@endempty
+snippet b:auth "Laravel Blade Snippets"
+		@auth
+			// The user is authenticated...
+		@endauth
+snippet b:guest "Laravel Blade Snippets"
+		@guest
+			// The user is not authenticated...
+		@endguest
+snippet b:has-section "Laravel Blade Condition Snippets"
+		@hasSection('$1')
+			$2
+		@endif
+# ==SWITCH-STATEMENTS==
+snippet b:switch "Laravel Blade Condition Snippets"
+		@switch($i)
+		@case(1)
+			First case...
+			@break
+
+		@case(2)
+			Second case...
+			@break
+
+		@default
+			Default case...
+		@endswitch
+snippet b:case "Laravel Blade Switch Statements"
+		@case($1)
+snippet b:break "Laravel Blade Switch Statements"
+		@break($1)
+snippet b:default "Laravel Blade Switch Statements"
+		@default
+# ==LOOPS==
+snippet b:for "Laravel Blade Condition Snippets"
+		@for($i = 0; $i < 10; $i++)
+			$1
+		@endfor
+snippet b:foreach "Laravel Blade Condition Snippets"
+		@foreach($1 as $key => $2)
+			$3
+		@endforeach
+snippet b:forelse "Laravel Blade Condition Snippets"
+		@forelse($1 as $key => $2)
+			$3
+		@empty
+			$4
+		@endforelse
+snippet b:while "Laravel Blade Condition Snippets"
+		@while (true)
+			<p>I'm looping forever.</p>
+		@endwhile
+snippet b:each "Laravel Blade Condition Snippets"
+		@each('view.name', $jobs, 'job', 'view.empty')
+snippet b:can "Laravel Blade Condition Snippets"
+		@can('update', $post)
+			$1
+		@endcan
+snippet b:can-elsecan "Laravel Blade Condition  Snippets"
+		@can('update', $post)
+			<!-- The Current User Can Update The Post -->
+		@elsecan('create', App\Post::class)
+			<!-- The Current User Can Create New Post -->
+		@endcan
+snippet b:cannot "Laravel Blade Condition Snippets"
+		@cannot('update', $post)
+			<!-- The Current User Can't Update The Post -->
+		@endcannot
+snippet b:cannot-elsecannot "Laravel Blade Condition Snippets"
+		@cannot('update', $post)
+			<!-- The Current User Can't Update The Post -->
+		@elsecannot('create', App\Post::class)
+			<!-- The Current User Can't Create New Post -->
+		@endcannot
+snippet b:includeif "Laravel Blade Condition Snippets"
+		@includeIf('view.name', ['key' => 'data'])
+snippet b:includewhen "Laravel Blade Condition Snippets"
+		@includeWhen($boolean, 'view.name', ['key' => 'data'])
+snippet b:includefirst "Laravel Blade Loops"	
+		@includeFirst(['custom.admin', 'admin'], ['key' => 'data'])
+# ==THE-LOOP-VARIABLES==
+snippet b:loop "Laravel Blade Loop Variables"	
+		$loop->
+snippet b:loop-index "Laravel Blade Loop Variables"
+		$loop->index
+snippet b:loop-iteration "Laravel Blade Loop Variables"
+		$loop->iteration
+snippet b:loop-remaining "Laravel Blade Loop Variables"
+		$loop->remaining
+snippet b:loop-count "Laravel Blade Loop Variables"
+		$loop->count
+snippet b:loop-first "Laravel Blade Loop Variables"
+		$loop->first
+snippet b:loop-last "Laravel Blade Loop Variables"
+		$loop->last
+snippet b:loop-even "Laravel Blade Loop Variables"
+		$loop->even
+snippet b:loop-odd "Laravel Blade Loop Variables"
+		$loop->odd
+snippet b:loop-depth "Laravel Blade Loop Variables"
+		$loop->depth
+snippet b:loop-parent "Laravel Blade Loop Variables"
+		$loop->parent
+# ==================================== #
+# ==LARAVEL-BLADE-TEMPLATES-CUSTOM==
+# ==================================== #
+snippet l:errori "Laravel Blade Custom" i
+		@error('$1') is-invalid @enderror
+snippet l:error "Laravel Blade Custom" b
+		@error('$1')
+			@alert {{ ${1:$variable} }} @endalert
+		@enderror

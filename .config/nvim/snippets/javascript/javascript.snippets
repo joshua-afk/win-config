@@ -1,0 +1,210 @@
+# ========================= #
+#
+# CONTENTS
+#
+#  = VANILLA
+#    = CONDITIONS
+#    = LOOPS
+#    = STANDARD
+#    = TRANSFORM
+#    = CHECKERS
+#    = ERROR-HANDLING
+#
+#  = CUSTOM
+#		 = CUSTOM-VANILLA-FUNCTIONS
+#		 = CUSTOM-EXPRESS
+#		 = CUSTOM-WEBIX
+#		 = CUSTOM-OUTPUTS
+#
+# ========================= #
+
+# == CONDITIONS ==
+snippet if "CONDITIONS: if statement"
+		if ($1) {
+			$0
+		}
+snippet ifelse "CONDITIONS: ifelse statement"
+		if ($1) {
+			$2
+		} else {
+			$0
+		}
+snippet switch "CONDITIONS: switch case"
+		switch(expression) {
+		  case x:
+				// code block
+				break;
+		  case y:
+				// code block
+				break;
+		  default:
+				// code block
+		} 
+snippet array-true "CONDITIONS: check if array has value"
+		if (array.length > 0) {
+			// code here
+		}
+# ==LOOPS==
+snippet for "LOOP: for loop"
+		for (let i = 0; obj < obj.length; i++) {
+		}
+snippet forin "LOOPS: forin loop (index)"
+		for (const index in $1) {
+			$0
+		}
+snippet forof "LOOPS: forof loop (values)"
+		for (const key of $1) {
+			$0
+		}
+snippet foreach "LOOPS: foreach loop 1 liner"
+		array1.forEach(element => console.log(element));
+# ==STANDARD==
+snippet cl "STANDARD: console.log"
+		console.log($0)
+snippet clkv "STANDARD: console.log with key and value"
+		console.log('$1: ${$1}')
+snippet settimeout "STANDARD: set timeout"
+		setTimeout(() => {
+			console.log("Delayed for 1 second.");
+		}, "1000")
+snippet push "STANDARD: push value to array"
+		@array.push(newValue)
+snippet replaceChild "STANDARD: replace specific child of node"
+		parentNode.replaceChild(newChildNode, parentNode.childNodes[0])
+snippet cloneNode "STANDARD: clone a javascript node"
+		element.cloneNode(true)
+snippet custom-route-data-by-id "STANDARD: custom route"
+		router.post('/data_by_id', async (req, res) => {
+			try {
+				const id = req.body.id
+				const sess = res.locals.session
+				const sqlConn = res.locals.sqlConn
+
+				const accessKey = ['Positions.New','Positions.Open']
+				const securityKey = await Db.getPPHSecurityKey(res, accessKey)
+
+				let hasAccess = Object.keys(securityKey).length > 0 ? true : false
+
+				if (hasAccess) {
+					const result = await sqlConn.request()
+						.input('id', sql.Int, id)
+						.input('company_id', sql.Int, sess.company_id)
+						.query(`SELECT Id, Code, Name, Ranking, Active
+									FROM tblPositions p
+									WHERE p.Id = @id AND p.CompanyId = @company_id`)
+
+					res.json(result.recordset)
+				}
+				else {
+					res.json({error_message: 'Access Denied', id: id})
+				}
+			}
+			catch (err) {
+				res.json({error_message: err.message, id})
+			}
+		})
+# ==TRANSFORM==
+snippet parse-int "TRANSFORM: parse value to int"
+		parseInt(var)
+snippet parse-float "TRANSFORM: parse value to float"
+		parseFloat(var)
+snippet parse-json "TRANSFORM: parse value to json"
+		JSON.parse(var)
+snippet parse-string "TRANSFORM: parse value to string"
+		String(var)
+snippet parse-upper-case "TRANSFORM: transform text to uppercase"
+		var.toUpperCase()
+snippet parse-lower-case "TRANSFORM: transform text to lowercase"
+		var.toLowerCase()
+snippet parse-absolute "TRANSFORM: negative to possitive number"
+		Math.abs(var)
+snippet parse-boolean "TRANSFORM: string boolean to boolean"
+		const IsActive = ('true' === 'true')
+		// OR
+		const IsActive = JSON.parse("TRUE".toLowerCase())
+# ==CHECKERS==
+snippet check-if-undefined "CHECKERS: check if variable is undefined"
+		if (typeof myVar !== 'undefined')
+snippet is-blank "CHECKERS: isBlank from RoR"
+		var isBlank = function (value) {
+				return value == undefined || value == null || value.toString() == '';
+		};
+# ==ERROR-HANDLING==
+snippet try-catch "ERROR-HANDLING: try catch validation"
+		try {
+			$0
+		} catch (err) {
+			console.log('Error: ' + err.message)
+		}
+snippet throw "ERROR-HANDLING: skip the block and throw an error"
+		throw 'Attachment cannot be empty, Please add attachment.'
+		throw new Error('Required');  // generates an error object with the message of Required
+# ==CUSTOM-VANILLA-FUNCTIONS==
+snippet custom-date-ordinal
+		var prefix = function (day) {
+				var prfx = '';
+				if (day == 1) {
+						prfx = 'st';
+				} else if (day == 2) {
+						prfx = 'nd';
+				} else if (day == 3) {
+						prfx = 'rd';
+				} else {
+						prfx = 'th';
+				}
+				return prfx;
+		};
+snippet change-object-key-value
+		Object.entries(res).map(([key, value]) => {
+			res[key]['Name'] = String(value)
+		})
+snippet change-object-key-name
+	delete Object.assign(object, {[newKey]: object[oldKey] })[oldKey];
+snippet remove-multiple-object-key
+		var obj = {a: 1, b: 2, c: 3, d: 4, e: 5 }
+		['c', 'e'].forEach(k => delete obj[k])
+snippet date-add-day
+		const dateCreated = new Date(obj['DateCreated'])
+		const day = (24*60*60*1000)
+		res['ExpirationDate'] = new Date(dateCreated.getTime() + 1 * day)
+snippet date-date-parse
+		res['CreationDate'] = res['CreationDate'].toISOString().slice(0, 10).replace('T', ' ')
+snippet copy-object
+		// spread method
+		let obj2 = {...obj1}
+# ==CUSTOM-WEBIX==
+snippet custom-webix-formevents
+		define(function () {
+			function main(config) {
+			}
+
+			main.prototype.getEvents = function (base) {
+				const essManagerUserAccountsApproversCustomColumn = function () {
+					return {
+						id: "ThirdApproverExcessHourFiling",
+						header: "3rd Approver Excess Hour Filing",
+						fillspace: true,
+						template: "{common.checkbox()}",
+						css: {"text-align": "center"},
+						checkValue: true,
+						uncheckValue: false
+					}
+				}
+				const events = {
+					onCustomBeforeFormShow: function (form) {
+						if(isAccessible["UserAccounts.Custom"]){
+							const grid = $$("essManagerUserAccountsApproversTabGrid").getGrid()
+							const columns = grid.config.columns
+
+							columns.splice(columns.length, 0, essManagerUserAccountsApproversCustomColumn())
+							grid.refreshColumns()
+						}
+					}
+				}
+				return events
+			}
+			return main
+		})
+# ==CUSTOM-OUTPUTS==
+snippet customroute
+		custom?custom_url=custom_employee/import

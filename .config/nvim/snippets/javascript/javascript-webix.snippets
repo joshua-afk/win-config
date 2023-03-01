@@ -1,0 +1,156 @@
+# =========================
+# Contents
+
+#  =WEBIX-AJAX
+#  =WEBIX-UI
+#  =WEBIX-MESSAGE
+#  =WEBIX-METHOD
+#  =WEBIX-EVENTS
+#  =WEBIX-PROPERTIES
+#
+# =========================
+
+# ==WEBIX-AJAX==
+snippet webix-ajax-post
+		webix.ajax().post('custom?custom_url=custom_employee/import', {
+			id: 1,
+		}, {
+			success: function (text, data) {
+				var res = data.json()
+				closeWaitBox()
+			},
+			error: function () {
+				closeWaitBox()
+				errorMessageBox("Error validating data")
+			}
+		})
+snippet webix-ajax-get
+		webix.ajax().get('custom?custom_url=custom_employee/import', {
+			id: 1,
+		}, {
+			success: function (text, data) {
+				var res = data.json()
+				closeWaitBox()
+			},
+			error: function () {
+				closeWaitBox()
+				errorMessageBox("Error validating data")
+			}
+		})
+snippet webix-ajax-post-success-only
+		webix.ajax().post('custom?custom_url=custom_employee/import', { id: 1, }, (text, data) => {})
+snippet webix-ajax-get-success-only
+		webix.ajax().get('custom?custom_url=custom_employee/import', { id: 1, }, (text, data) => {})
+# ==WEBIX-UI==
+snippet webix-ui-modal
+		webix.ui({
+			view: "window",
+			position: "center",
+			width: 300,
+			height: 200,
+			modal: true,
+			borderless: true,
+			title: "Inbox",
+			head: {
+				view: "toolbar",
+				height: 33,
+				cols: [
+					{
+						view: "label",
+						label: "Inbox"
+					},
+					{
+						view: "icon",
+						icon: "fas fa-times-circle",
+						click: function () {
+							this.getTopParentView().close();
+						}
+					}
+				]
+			},
+			body: {
+			},
+		}).show()
+snippet webix-ui-datatable
+		var datatable = webix.ui({
+				view:"datatable", 
+				columns:[
+						{
+								id: "Id",
+								header: "Id",
+								fillspace: true,
+								hidden: true
+						},
+						{
+								id: "EmployeeCode",
+								header: "EmployeeCode",
+								//editor: "text",
+								fillspace: true
+						},
+				],
+				data: employeeListArray
+		})
+snippet webix-ui-jsgrid
+		const jsgrid = webix.ui({
+			view: "jsgrid",
+			id: "accessControlListFormGrid",
+			hideAddButton: false,
+			hideRemoveButton: false,
+			hideImportButton: true,
+			hideExportButton: true,
+			autoLoad: true,
+			loadUrl: "access_control_list/details",
+			paramName: "access_control_list_details",
+			columns: [
+				{
+					id: "Id",
+					header: "Id",
+					fillspace: true,
+					hidden: true
+				},
+				{
+					id: "IPAddress",
+					header: "IP Address",
+					fillspace: true,
+					editor: "text"
+				}
+			],
+		})
+# ==WEBIX-MESSAGE==
+snippet webix-message-confirm "message: confirm message box"
+		confirmMessageBox("Delete selected record(s)?", function () {
+			// if comfirm, do this
+		});
+snippet webix-message-info "message: confirm message box"
+		informMessageBox("You don't have access to this module")
+snippet webix-message-warning "message: confirm message box"
+		warningMessageBox(file.name + ' exceeds to ' + max + 'MB file limit.')
+# ==WEBIX-METHOD==
+snippet webix-get-item "METHOD: gets the object of the data item with the specified ID"
+		//id is numeric
+		this.getItem(id)
+snippet webix-get-item-node "METHOD: returns HTML element of the item"
+		this.getItemNode(123);
+snippet webix-get-node "METHOD: returns the main HTML container for the calling object"
+		$('elementId').getNode()
+snippet webix-set-value "METHOD: sets a new value for the component"
+		$$('elementId').setValue()
+snippet webix-get-value "METHOD: text returns the current value of the element"
+		$$('elementId').getValue()
+snippet webix-each-row 'METHOD: datatable, iterates over all rows in the table'
+		let employee_ids = []
+		const trainingDocumentGranteeGrid = $$('customTrainingDocumentGranteesGrid').getGrid()
+		trainingDocumentGranteeGrid.eachRow(function(row){ 
+			const currentRow = trainingDocumentGranteeGrid.getItem(row)
+			employee_ids.push(currentRow['EmployeeId'])
+		})
+# ==WEBIX-EVENTS==
+snippet onChange "EVENTS: jscombo"
+		$$("control").attachEvent("onChange", function(newValue, oldValue, config){
+				// code
+		});
+snippet onItemClick "EVENTS: jscombo"
+		button.attachEvent("onItemClick", function(id, e){
+				// code
+		});
+# ==WEBIX-PROPERTIES==

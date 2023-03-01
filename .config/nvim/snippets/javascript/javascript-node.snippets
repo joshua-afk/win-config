@@ -1,0 +1,178 @@
+# =========================
+# Contents
+#
+#  ==REQUIRE
+#  ==EXPRESS
+#  ==MSSQL
+#  ==CUSTOM
+#
+# =========================
+
+# ==REQUIRE==
+snippet require-moment "REQUIRE: import moment"
+		const moment = require('moment')
+# ==EXPRESS==
+snippet node-route-test
+		router.get('/test', async (req, res) => {
+			try {
+				const sess = res.locals.session
+				const sqlConn = res.locals.sqlConn
+
+				const result = await sqlConn.request()
+					.input('id', sql.Int, 1)
+					.input('company_id', sql.Int, sess.company_id)
+					.query('SELECT Id, Code, Name, Ranking, Active FROM tblPositions p WHERE p.Id = @id AND p.CompanyId = @company_id')
+
+				res.json(result.recordset)
+			}
+			catch {
+				res.json({})
+			}
+		})
+snippet node-get-lookups
+		router.post('/get_lookups', async (req, res) => {
+			try {
+				const id = req.body.id
+
+				// const accessKey = 'Projects.Open'
+				// const hasAccess = (await Db.getSecurityKey(res, accessKey)).length > 0 ? true : false
+				const hasAccess = true
+
+				if (hasAccess) {
+					let data = {
+						'max_file_size': await maxFileSize.getData(res)
+					}
+
+					data = lookupHelper.sanitizeObject(data)
+
+					res.json(data)
+				} else {
+					res.json({error_message: 'Access Denied', id: id})
+				}
+			} catch {
+				res.json({})
+			}
+		})
+snippet node-route-save
+		router.post('/save', async (req, res) => {
+			let id = parseInt(req.body.id)
+			const sess = res.locals.session
+
+			// check if user has access. Use actual code depending on the project
+			const accessKey = ['Positions.Edit', 'Positions.New']
+			const securityKey = await Db.getPPHSecurityKey(res, accessKey)
+
+			let hasAccess = Object.keys(securityKey).length > 0 ? true : false
+
+			if (hasAccess) {
+				try {
+					const sqlConn = res.locals.sqlConn
+					const transaction = await sqlConn.transaction()
+
+					await transaction.begin()
+					try {
+						// use log user here depending on the project
+						await common.pphLogUser(transaction, sess.company_id, sess.user_id)
+
+						let formData = JSON.parse(req.body.master_form_data)
+						const position = new Position(transaction)
+						const duplicateCols = {
+							Code: formData.Code
+						}
+
+						if (id === 0) {
+							formData.CompanyId = sess.company_id
+							await position.checkDuplicate(id, duplicateCols)
+							let result = await position.insert(formData)
+							id = result.Id
+						}
+						else {
+							const params = [
+								{name: 'id', type: sql.Int, value: id},
+								{name: 'company_id', type: sql.Int, value: sess.company_id}
+							]
+							await position.checkDuplicate(id, duplicateCols)
+							await position.update(params, formData, 'Id = @id AND CompanyId = @company_id')
+						}
+						
+						await transaction.commit()
+
+						res.json({error_message: '', id})
+					}
+					catch (err) {
+						await transaction.rollback()
+
+						res.json({error_message: err.message, id})
+					}
+				}
+				catch (err) {
+					res.json({error_message: err.message, id})
+				}
+			}
+			else {
+				res.json({error_message: 'Access Denied', id: id})
+			}
+		})
+snippet get-date-time "EXPRESS: get current date from database and parse it"
+		const currentDateTime = (await sqlConn.request().query("SELECT GETDATE() AS Date")).recordset[0]['Date']
+		const sanitizedCurrentDateTime = currentDateTime.toISOString().slice(0, 19).replace('T', ' ')
+# ==REQUEST==
+snippet request-select "MSSQL: select query"
+		const result = await sqlConn.request()
+			.input('id', sql.Int, id)
+			.input('company_id', sql.Int, sess.company_id)
+			.query('SELECT Id, CompanyId, TrainingName, TrainingCode, StartDate, EndDate, StartTime, EndTime, TrainingVenue, TrainingDescription, Active FROM tblCustomTGITrainings WHERE Id = @id AND CompanyId = @company_id')
+snippet request-insert "MSSQL: insert query"
+		await sqlConn.request()
+			.input('training_id', sql.Int, params.id)
+			.input('employee_id', sql.Int, sess.user_id)
+			.input('description', sql.VarChar(5000), params.description)
+			.input('file', sql.VarBinary, file.data)
+			.input('file_name', sql.VarChar(250), params.upload_fullpath)
+			.input('file_size', sql.Int, params.file_size)
+			.input('content_type', sql.VarChar(250), params.file_type)
+			.query('INSERT INTO tblCustomTGITrainingDocuments (TrainingId, EmployeeId, [Description], [File], [FileName], FileSize, ContentType) VALUES (@training_id, ABS(@employee_id), @description, @file, @file_name, @file_size, @content_type)')
+snippet request-update "MSSQL: update query"
+		await sqlConn.request()
+			.input('id', sql.Int, ids[id])
+			.input('company_id', sql.Int, sess.company_id)
+			.input('is_publish', sql.VarChar, value)
+			.query('UPDATE tblCustomTGITrainings SET IsPublished = @is_publish WHERE Id = @id AND CompanyId = @company_id')
+snippet request-delete "MSSQL: delete query"
+		await sqlConn.request()
+			.input('id', sql.Int, id)
+			.input('employee_id', sql.Int, sess.user_id)
+			.query('DELETE FROM tblCustomTGITrainingDocuments WHERE Id = @id AND EmployeeId = ABS(@employee_id)')
+# ==CUSTOM==
+snippet node-current-date "CUSTOM: get current date from database"
+		const currentDate = moment(new Date((await sqlConn.request().query("SELECT GETDATE() AS Date")).recordset[0]['Date'])).format('YYYY-MM-DD')
+snippet node-route-access-key
+	if (accessKey) {
+		try {
+			const sqlConn = res.locals.sqlConn
+			const transaction = await sqlConn.transaction()
+
+			await transaction.begin()
+			try {
+				// ess
+				await common.essLogUser(transaction, companyId, userId)
+				// pph
+				await common.pphLogUser(transaction, companyId, userId)
+
+        // model
+        const MyDocumentEmployee = new CustomMyDocumentEmployee(transaction)
+
+        // query here
+
+				await transaction.commit()
+        res.json({error_message: '', isPublished: value})
+			} catch (err) {
+				await transaction.rollback()
+				res.json({error_message: err.message, id})
+			}
+    } catch (err) {
+			res.json({error_message: err.message, id})
+		}
+	} else {
+		res.json({error_message: 'Access Denied', id: id})
+	}

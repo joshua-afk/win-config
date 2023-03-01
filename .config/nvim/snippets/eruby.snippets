@@ -1,0 +1,21 @@
+snippet ajaxget
+		$.ajax({
+			type: "GET", 
+			url: "/root_route/get_some_stupid_id", 
+			data: {params1: 'param1 value', param2: $("#someStupidElementId").val()},
+			success: function(response){
+			  // do something with the stupid response
+			}
+		});
+
+snippet ajaxpost
+		$.ajax({
+			type: "POST", 
+			url: "/root_route/get_some_stupid_data", 
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			data: {params1: 'param1 value', param2: $("#someStupidElementId").val()},
+			success: function(response){
+			  // do something with the stupid response
+			}
+		});
+

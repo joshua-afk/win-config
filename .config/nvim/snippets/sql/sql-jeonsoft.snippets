@@ -1,0 +1,62 @@
+# =========================
+# CONTENTS
+#
+#  =PPH
+#  =ESS
+#
+# =========================
+
+# ==PPH==
+snippet pph-security-key
+		DECLARE @ParentSecurityKeyId INT
+		DECLARE @NewSecurityKeyId INT
+
+		EXEC uspPostSecurityKey 'PayGroupSettings.Preferences', 'Custom Pay Group', 'Custom.PayGroupSettings', 4
+		SELECT @NewSecurityKeyId = Id FROM tblSecurityKeys WHERE SecurityKey = 'PayGroupSettings.Preferences'
+		SELECT @ParentSecurityKeyId = Id FROM tblSecurityKeys WHERE SecurityKey = 'Custom.PayGroupSettings'
+
+		INSERT INTO tblSecurityGroupSecurityKeys(SecurityGroupId, SecurityKeyId)
+		SELECT sgsk.SecurityGroupId, @NewSecurityKeyId
+		FROM tblSecurityGroupSecurityKeys sgsk
+		WHERE sgsk.SecurityKeyId = @ParentSecurityKeyId
+				AND NOT EXISTS(SELECT * FROM tblSecurityGroupSecurityKeys xsgsk WHERE xsgsk.SecurityGroupId = sgsk.SecurityGroupId AND xsgsk.SecurityKeyId = @NewSecurityKeyId)
+		INSERT INTO tblSecurityUserSecurityKeys(SecurityUserId, SecurityKeyId)
+		SELECT susk.SecurityUserId, @NewSecurityKeyId
+		FROM tblSecurityUserSecurityKeys susk
+		WHERE susk.SecurityKeyId = @ParentSecurityKeyId
+				AND NOT EXISTS(SELECT * FROM tblSecurityUserSecurityKeys xsusk WHERE xsusk.SecurityUserId = susk.SecurityUserId AND xsusk.SecurityKeyId = @NewSecurityKeyId)
+
+		EXEC uspUpdateSecurityKeyOrder
+		GO
+
+		--UPDATE tblSecurityKeys SET Checksum = '1998418902' WHERE SecurityKey = 'PayGroupSettings.Preferences'
+
+# ==ESS==
+snippet ess-security-key-main "ESS: Main Security key for Menu"
+		IF NOT EXISTS (SELECT * FROM tblWebkioskModules WHERE Code = 'About Me')
+		BEGIN
+			-- Description, Code, ParentId, Version = NULL
+			EXEC uspPostWebkioskModule 'About Me', 'About Me', ''
+		END
+
+
+		GO
+snippet ess-security-key-module "ESS: Create Parent Security Key for Specific Module"
+		IF NOT EXISTS (SELECT * FROM tblWebkioskModules WHERE Code = 'My Documents')
+		BEGIN
+			-- Description, Code, ParentId, Version = NULL
+			EXEC uspPostWebkioskModule 'My Documents', 'My Documents', 'About Me'
+		END
+
+
+		GO
+snippet ess-security-key-action "ESS: Create Security Keys for Module Actions"
+		// New, Open, Update, Delete / Publish, Unpublish / Confirm, Join, Decline / MISC: AddEmployees
+		IF NOT EXISTS (SELECT * FROM tblWebkioskModules WHERE Code = 'MyDocuments.Open')
+		BEGIN
+			-- Description, Code, ParentId, Version = NULL
+			EXEC uspPostWebkioskModule 'MyDocuments.Open', 'Open', 'My Documents'
+		END
+
+
+		GO

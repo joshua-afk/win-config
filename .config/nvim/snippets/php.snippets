@@ -1,0 +1,177 @@
+# =========================
+# CONTENTS
+#
+#  =DOCUMENTING
+#  =DEFINING LAYOUT
+#  =EXTENDING LAYOUT
+#  =CONTROL STRUCTURES
+#  =FORMS
+#
+# =========================
+
+# ==DOCUMENTING==
+snippet doc
+		/**
+		* Documented block
+		*
+		* @return void
+		*/
+snippet docindex
+		/**
+		* Display a listing of the $1resource.
+		*
+		* @return \Illuminate\Http\Response
+		*/
+snippet doccreate
+		/**
+		* Show the form for creating a new $1resource.
+		*
+		* @return \Illuminate\Http\Response
+		*/
+snippet docstore
+		/**
+		* Store a newly created $1resource in database.
+		*
+		* @param  \Illuminate\Http\Request  $request
+		* @return \Illuminate\Http\Response
+		*/
+snippet docshow
+		/**
+		* Display the specified $1resource.
+		*
+		* @param  int  $id
+		* @return \Illuminate\Http\Response
+		*/
+snippet docedit
+		/**
+		* Show the form for editing the specified $1resource.
+		*
+		* @param  int  $id
+		* @return \Illuminate\Http\Response
+		*/
+snippet docupdate
+		/**
+		* Update the specified $1resource in database.
+		*
+		* @param  \Illuminate\Http\Request  $request
+		* @param  int  $id
+		* @return \Illuminate\Http\Response
+		*/
+snippet docdestroy
+		/**
+		* Remove the specified $1resource from database.
+		*
+		* @param  int  $id
+		* @return \Illuminate\Http\Response
+		*/
+snippet fetch
+		// Fetch the $1resource from database.
+snippet dlstore
+		// Store the resource_name.
+		// Store the resource_relationship of resource_name.
+		// Add resource_relationship for resource_name.
+snippet dlupdate
+		// Update the table_name of resource_name to "updated data".
+		// Update the resource_name.
+		// Update the resource_relationship of resource_name.
+
+snippet dldelete
+		// Delete the resource_name.
+		// Remove resource_relationship of resource_name.
+snippet dlnotify
+		// Notify the user that the notification_class_name.
+snippet met
+		public function $1()
+		{
+			$2
+		}
+snippet pmet
+		protected function $1()
+		{
+			$2
+		}
+snippet meti
+		public function __invoke()
+		{
+			$1
+		}
+snippet metc
+		/**
+		* Instantiate a new modelController instance.
+		*/
+		public function __construct(${1/\w+\s*/\u$0/} $$1)
+		{
+			$this->$1 = $$1;
+		}
+snippet rall
+		return $request->all();
+snippet rrdir
+		return redirect('$1');
+snippet rview
+		return view('$1');
+snippet rback
+		return back();
+snippet ireq "Initialize request" i
+		Request $request
+snippet req "request" i
+		$request->$1
+snippet kval "Key and Value" i
+		'$1' => $2,
+snippet reqval
+		$validatedData = $request->validate([
+			'key' => 'required',
+		]);
+snippet dd
+		dd($1);
+snippet dda
+		dd($request->all());
+snippet timestamps
+		'created_at' => now('Asia/Manila'),
+		'updated_at' => now('Asia/Manila'),
+snippet wh
+		where($1)
+snippet fof
+		findOrFail($1);
+snippet get
+		get($1);
+snippet auser
+		auth()->user()->
+snippet com
+		compact($1)
+snippet sanitizeimage "Sanitize image" b
+		if($request->hasFile('profile_image')){
+			$file = $request->file('profile_image')->getClientOriginalName();
+			$file_name = pathinfo($file, PATHINFO_FILENAME);
+			$file_extension = $request->file('profile_image')->getClientOriginalExtension();
+			$file_store = $file_name . '_' . time() . '.' . $file_extension;
+		} else {
+			$file_store = 'no-image.png';
+		}
+snippet storeimage
+		if ($eloquent) {
+			if ($file_store !== 'no-image.jpg') {
+				$request->file('profile_image')->storeAs('public/images/cover_images/', $file_store);
+			}
+		}
+snippet sign
+		Joshua Ryan Velasquez
+# ==LOOPS==
+snippet if "Loop"
+		if ($1) {
+
+		}
+snippet foreach
+		foreach ($1 as $key => $value) {
+			
+		}
+snippet switch
+		switch ($var) {
+			case label1:
+				// code to be executed if n=label1;
+				break;
+			case label2:
+				// code to be executed if n=label2;
+				break;
+			default:
+				// code to be executed if n is different from all labels;
+		} 
