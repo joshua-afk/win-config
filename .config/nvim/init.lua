@@ -20,5 +20,7 @@ if vim.g.neovide then
   vim.o.guifont = "CaskaydiaCove Nerd Font:h10" -- text below applies for VimScript
   vim.opt.linespace=5
 
-  vim.g.neovide_cursor_vfx_mode = "ripple"
+  -- vim.g.neovide_cursor_vfx_mode = "ripple"
+  -- vim.g.neovide_cursor_vfx_mode = "pixiedust"
+  vim.g.neovide_cursor_vfx_mode = "torpedo"
 end
