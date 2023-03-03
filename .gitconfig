@@ -1,15 +1,15 @@
 [user]
-    email = jr.velasquez@jeonsoft.com
-    name = Joshua Ryan V. Velasquez
+	name = Joshua Ryan V. Velasquez
+	email = jr.velasquez@jeonsoft.com
 [github]
     user = joshua-afk
 [core]
-    editor = nvim
-    autocrlf = true
-    excludesfile = 
+	editor = nvim
+	autocrlf = true
+	excludesfile = oz
 [alias]
-    fuckit = reset --hard
-    dontfuck = reset --soft
+    hard = reset --hard
+    soft = reset --soft
     ci = commit
     p = push
     st = status
@@ -19,19 +19,23 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     plog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     cfc = show --pretty --name-only
+    unstage = reset HEAD --
+    del = branch -D
+    new = checkout -b
+    amend = commit --amend
 [color]
     ui = true
     branch = auto
     diff = auto
     interactive = auto
     status = auto
-[credential]
-    helper = store
-    helper = cache --timeout=3600
-[credential "http://main:1880"]
-    provider = generic
 [difftool "sourcetree"]
-    cmd = 'C:/Program Files/KDiff3/kdiff3.exe' \"$LOCAL\" \"$REMOTE\"
+	cmd = "'' "
 [mergetool "sourcetree"]
-    cmd = 'C:/Program Files/KDiff3/kdiff3.exe' \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-    trustExitCode = true
+	cmd = "'' "
+	trustExitCode = true
+[credential "http://main:1880"]
+	provider = generic
+	helper = wincred
+[credential "http://mainserver:1880"]
+	provider = generic
