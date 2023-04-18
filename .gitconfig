@@ -23,12 +23,6 @@
     del = branch -D
     new = checkout -b
     amend = commit --amend
-[color]
-    ui = true
-    branch = auto
-    diff = auto
-    interactive = auto
-    status = auto
 [difftool "sourcetree"]
 	cmd = "'' "
 [mergetool "sourcetree"]
