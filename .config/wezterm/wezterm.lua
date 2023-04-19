@@ -6,7 +6,8 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     font_dirs = {
         'C:\\Users\\whoami\\.dotfiles\\.fonts'
     }
-    default_prog = {'wsl.exe', '~', '-d', 'Ubuntu-20.04'}
+    default_prog = {'wsl.exe', '~'}
+    -- default_prog = {'wsl.exe', '~', '-d', 'Ubuntu-20.04'}
 end
 
 return {
@@ -28,7 +29,7 @@ return {
     -- Fonts
     font_size   = 10,
     line_height = 1.1,
-    font = wezterm.font('CaskaydiaCove Nerd Font'),
+    --font = wezterm.font('CaskaydiaCove Nerd Font'),
     -- font = wezterm.font('DroidSansMono Nerd Font Mono'),
     -- font = wezterm.font('Iosevka'),
     -- font = wezterm.font('Consolas'),
@@ -36,8 +37,8 @@ return {
     -- 24 inch monitor config
     font_size   = 10,
     line_height = 1.1,
-    initial_rows = 55,
-    initial_cols = 236,
+    -- initial_rows = 55,
+    -- initial_cols = 236,
 
     -- 1366 x 768 (15 inch) resolution display
     -- font_size   = 10,
