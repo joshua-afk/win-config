@@ -6,7 +6,7 @@ window:
     y: 3
 
 shell:
-  program: "C:\\Windows\\system32\\wsl.exe -d Ubuntu-20.04"
+  program: "C:\\Windows\\system32\\wsl.exe"
   args:
     - --cd ~
 
