@@ -33,6 +33,7 @@ return require('packer').startup(function()
   -- Navigation
   use 'notjedi/nvim-rooter.lua'
   -- use {'akinsho/bufferline.nvim', tag = "v3.*"}
+  use 'petertriho/nvim-scrollbar'
 	
   -- LSP & Snippets
 	use 'neovim/nvim-lspconfig'
