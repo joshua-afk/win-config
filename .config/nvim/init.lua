@@ -17,7 +17,7 @@ require 'mappings'
 require 'auto-commands'
 
 if vim.g.neovide then
-  vim.o.guifont = "CaskaydiaCove Nerd Font:h10" -- text below applies for VimScript
+  opt.guifont = { "CaskaydiaCove NF", ":h10" }
   vim.opt.linespace=5
 
   -- vim.g.neovide_cursor_vfx_mode = "ripple"
