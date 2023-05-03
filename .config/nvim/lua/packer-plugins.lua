@@ -37,7 +37,11 @@ return require('packer').startup(function()
 	
   -- LSP & Snippets
 	use 'neovim/nvim-lspconfig'
-  use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+  use({
+    "L3MON4D3/LuaSnip",
+    tag = "v1.2.*",
+    run = "make install_jsregexp"
+  })
 
 	-- Theme
 	use { "catppuccin/nvim", as = "catppuccin" }
