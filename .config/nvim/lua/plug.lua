@@ -6,6 +6,7 @@ vim.call('plug#begin', fn.stdpath('data')..'/plugged')
 -- Core
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/vim-easy-align'
+Plug 'NMAC427/guess-indent.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
