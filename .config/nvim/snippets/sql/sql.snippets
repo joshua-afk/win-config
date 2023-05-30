@@ -57,16 +57,20 @@ snippet checksp
 		sp_helptext uspImportEmployees
 #  =COLUMNS
 snippet int
-		[Id] INT IDENTITY (1, 1) NOT NULL
-		EmployeeId INT NOT NULL
+		[Id] INT IDENTITY (1, 1) NOT NULL,
+		EmployeeId INT NOT NULL,
 snippet varchar
-	  Description VARCHAR(250) NULL
+	  Description VARCHAR(250) NULL,
 snippet datetime
-		CreationDate DATETIME NOT NULL
+		CreationDate DATETIME NOT NULL,
 snippet image
-		File IMAGE NULL
+		File IMAGE NULL,
 snippet bit
-    IsActive BIT NOT NULL DEFAULT (0)
+    IsActive BIT NOT NULL DEFAULT (0),
+snippet money
+    Rate MONEY NOT NULL,
+snippet float
+		EmployeeId FLOAT NOT NULL,
 #  =TRICKS
 snippet create-snapshot
 		DECLARE @DBName VARCHAR(100)
@@ -131,7 +135,7 @@ snippet create-stored-proc
 		-- code here
 
 		GO
-snippet createtable
+snippet create-table
 		IF OBJECT_ID('tblTable') IS NULL
 		BEGIN
 			CREATE TABLE [dbo].[tblTable] (
@@ -181,7 +185,7 @@ snippet create-fn-scalar
 		GO
 snippet create-fn-table
 		-- table function
-		IF OBJECT_ID(‘fnFunction') IS NOT NULL DROP FUNCTION dbo.[fnFunction]
+		IF OBJECT_ID('fnFunction') IS NOT NULL DROP FUNCTION dbo.[fnFunction]
 		GO
 		SET ANSI_NULLS ON
 		GO
