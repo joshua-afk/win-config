@@ -68,7 +68,7 @@ snippet image
 snippet bit
     IsActive BIT NOT NULL DEFAULT (0)
 #  =TRICKS
-snippet createsnapshot
+snippet create-snapshot
 		DECLARE @DBName VARCHAR(100)
 		DECLARE @PhysicalNamePath VARCHAR(500)
 		SET @DBName = 'DB_Payroll'
@@ -92,7 +92,7 @@ snippet createsnapshot
 
 
 		GO
-snippet restoresnapshot
+snippet restore-snapshot
 		USE [master];
 		DECLARE @DBName VARCHAR(100)
 		SET @DBName = 'DB_Payroll'
@@ -117,7 +117,7 @@ snippet restoresnapshot
 
 
 		GO
-snippet createstoredproc
+snippet create-stored-proc
 		IF OBJECT_ID('uspStoredProc') IS NOT NULL DROP PROCEDURE [uspStoredProc]
 		GO
 		SET ANSI_NULLS ON
@@ -143,7 +143,7 @@ snippet createtable
 
 
 		GO
-snippet createview
+snippet create-view
 		IF OBJECT_ID('viwView') IS NOT NULL DROP VIEW [viwView]
 		GO
 		SET ANSI_NULLS ON
@@ -155,6 +155,95 @@ snippet createview
 
 			SELECT *
 			FROM tblEmployees
+
+
+		GO
+snippet create-fn-scalar
+		-- scalar function
+		IF OBJECT_ID('fnFunction') IS NOT NULL DROP FUNCTION dbo.[fnFunction]
+		GO
+		SET ANSI_NULLS ON
+		GO
+		SET QUOTED_IDENTIFIER ON
+		GO
+		CREATE FUNCTION [dbo].[fnFunction] (@Param INT)
+		RETURNS FLOAT AS
+
+		BEGIN
+
+		DECLARE @13thMonth FLOAT
+
+		RETURN @13thMonth
+
+		END
+
+
+		GO
+snippet create-fn-table
+		-- table function
+		IF OBJECT_ID(‘fnFunction') IS NOT NULL DROP FUNCTION dbo.[fnFunction]
+		GO
+		SET ANSI_NULLS ON
+		GO
+		SET QUOTED_IDENTIFIER ON
+		GO
+		CREATE FUNCTION [dbo].[fnFunction'](@Year INT)
+		RETURNS @ReturnTable TABLE(Id INT, Rate FLOAT)
+		AS
+		BEGIN
+				INSERT INTO @ReturnTable (Id, Rate)
+				SELECT 1, 500.0  
+
+
+				RETURN
+		END
+
+
+		GO
+snippet create-triggers
+		IF OBJECT_ID('tblEmployees_Insert_Update_Delete') IS NOT NULL DROP TRIGGER [tblEmployees_Insert_Update_Delete]
+		SET ANSI_NULLS ON
+		GO
+		SET QUOTED_IDENTIFIER ON
+		GO
+		CREATE TRIGGER [dbo].[tblEmployees_Insert_Update_Delete] ON [dbo].[tblEmployees]
+		FOR INSERT, UPDATE, DELETE
+		AS
+		SET NOCOUNT ON
+
+		DECLARE @HasInserted BIT
+		DECLARE @HasDeleted BIT
+
+		--inserted table contains new values that you can use
+		SELECT * FROM inserted
+		--deleted table contains deleted value that you can use or validate against the new value.
+		SELECT * FROM deleted 
+
+
+		SET @HasInserted = CASE WHEN EXISTS(SELECT * FROM inserted) THEN 1 ELSE 0 END
+		SET @HasDeleted = CASE WHEN EXISTS(SELECT * FROM deleted) THEN 1 ELSE 0 END 
+
+		DECLARE @Mode VARCHAR(50)
+		SET @Mode = CASE
+				WHEN @HasInserted = 1 AND @HasDeleted = 0 THEN 'New'
+				WHEN @HasInserted = 1 AND @HasDeleted = 1 THEN 'Edit' --if both inserted or deleted tables contains data then the record is edited/modified
+				WHEN @HasInserted = 0 AND @HasDeleted = 1 THEN 'Delete'
+				ELSE ''
+					END
+
+
+		IF @Mode = 'New'
+		BEGIN
+		--do something
+		END
+		ELSE IF @Mode = 'Edit'
+		BEGIN
+			--do something
+		END
+		ELSE IF @Mode = 'Delete'
+		BEGIN
+			--do something
+		END
 
 
 		GO
