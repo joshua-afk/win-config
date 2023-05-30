@@ -1,0 +1,17 @@
+# =========================
+# CONTENTS
+#
+#  =FORMS
+#
+# =========================
+
+# ==DOCUMENTING==
+snippet form
+		form(method='POST', action='/add_movie')
+			p
+				| title: 
+				input(type='text', name='title', value='')
+				|          year: 
+				input(type='text', name='year', value='')
+				|          imdb: 
+				input(type='text', name='imdb', value='')
