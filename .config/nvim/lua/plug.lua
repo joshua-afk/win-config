@@ -7,7 +7,7 @@ vim.call('plug#begin', fn.stdpath('data')..'/plugged')
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/vim-easy-align'
 Plug 'NMAC427/guess-indent.nvim'
-Plug 'lukas-reineke/indent-blankline.nvim'
+-- Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
@@ -39,7 +39,7 @@ Plug 'ap/vim-css-color'
 
 -- Git
 Plug 'tpope/vim-fugitive'
---Plug 'f-person/git-blame.nvim'
+Plug 'f-person/git-blame.nvim'
 
 -- Theme
 Plug 'rakr/vim-one'
