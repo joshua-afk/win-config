@@ -45,6 +45,14 @@ snippet case
 				WHEN conditionN THEN resultN
 				ELSE result
 		END
+
+		--
+
+		CASE
+				WHEN tmp.Active = 'Active'
+				THEN 1
+		ELSE 0
+		END AS Active
 snippet case-where 
 		WHERE co.DTEntered = CASE 
 															WHEN LEN('blah') = 0 
