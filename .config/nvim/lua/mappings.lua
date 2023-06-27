@@ -62,3 +62,6 @@ api.nvim_set_keymap('n', 'zz', 'zf%', options)
 
 -- Swith between 2 latest buffers
 api.nvim_set_keymap('n', '<tab>', '<c-6>', options)
+
+-- GitBlame toggle
+api.nvim_set_keymap('n', '<leader>gblame', ':GitBlameToggle <cr>', options)
