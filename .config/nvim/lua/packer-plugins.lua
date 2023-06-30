@@ -51,6 +51,7 @@ return require('packer').startup(function()
 	use { 'kyazdani42/nvim-tree.lua',
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
+  use 'nvim-tree/nvim-web-devicons'
   -- use 'SidOfc/carbon.nvim'
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.x' }
 
