@@ -3,7 +3,6 @@ local types = require 'luasnip.util.types'
 
 ls.setup({
   history = true,
-  -- Update more often, :h events for more info.
 	update_events = "TextChanged,TextChangedI",
   enable_autosnippets = true,
   ext_opts = {
