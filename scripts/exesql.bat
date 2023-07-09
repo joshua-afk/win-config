@@ -1,0 +1,1 @@
+for %%G in (*.sql) do sqlcmd /S HP-JR\SQL2019 /d jti-amc -U sa -P masterkey_2233# -i"%%G"
