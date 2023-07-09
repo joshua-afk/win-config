@@ -19,11 +19,11 @@ require 'auto-commands'
 -------- NEOVIDE SETTINGS --------
 if vim.g.neovide then
   opt.guifont = { "CaskaydiaCove NF", ":h10" }
-  -- vim.opt.linespace=3
+  vim.g.neovide_cursor_vfx_mode = "torpedo"
 
+  -- vim.opt.linespace=3
   -- vim.g.neovide_cursor_vfx_mode = "ripple"
   -- vim.g.neovide_cursor_vfx_mode = "pixiedust"
-  vim.g.neovide_cursor_vfx_mode = "torpedo"
 end
 
 -------- VIM PLUG PLUGIN SETTINGS --------
