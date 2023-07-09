@@ -30,12 +30,12 @@ tree.setup({
         file = true,
         folder = true,
         folder_arrow = true,
-        git = true,
+        git = false,
       }
     }
   },
   git = {
-    enable = true,
+    enable = false,
     ignore = false,
     show_on_dirs = false,
     timeout = 400,
