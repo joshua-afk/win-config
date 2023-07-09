@@ -12,12 +12,15 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function()
-  -- Packer
 	use 'wbthomason/packer.nvim'
 
 	-- Core
 	use 'zegervdv/nrpattern.nvim'
   use "nvim-lua/plenary.nvim"
+  use 'xorid/swap-split.nvim'
+	use 'numToStr/Comment.nvim'
+  -- use 'feline-nvim/feline.nvim'
+  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
@@ -25,14 +28,9 @@ return require('packer').startup(function()
       ts_update()
     end,
   }
-  -- use 'nvim-treesitter/playground'
-  use 'xorid/swap-split.nvim'
-  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
-	use 'numToStr/Comment.nvim'
 
   -- Navigation
   use 'notjedi/nvim-rooter.lua'
-  -- use {'akinsho/bufferline.nvim', tag = "v3.*"}
   use 'petertriho/nvim-scrollbar'
 	
   -- LSP & Snippets
@@ -45,14 +43,10 @@ return require('packer').startup(function()
 
 	-- Theme
 	use { "catppuccin/nvim", as = "catppuccin" }
-  -- use "folke/styler.nvim"
 
   -- File Explorer
-	use { 'kyazdani42/nvim-tree.lua',
-		tag = 'nightly' -- optional, updated every week. (see issue #1193)
-	}
   use 'nvim-tree/nvim-web-devicons'
-  -- use 'SidOfc/carbon.nvim'
+	use { 'kyazdani42/nvim-tree.lua', tag = 'nightly' }
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.x' }
 
   -- Extension for plugins
@@ -70,3 +64,9 @@ return require('packer').startup(function()
     require('packer').sync()
   end
 end)
+
+-- Other plugins
+-- use 'nvim-treesitter/playground'
+-- use "folke/styler.nvim"
+-- use 'SidOfc/carbon.nvim'
+-- use {'akinsho/bufferline.nvim', tag = "v3.*"}

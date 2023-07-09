@@ -6,23 +6,16 @@ vim.call('plug#begin', fn.stdpath('data')..'/plugged')
 -- Core
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/vim-easy-align'
-Plug 'NMAC427/guess-indent.nvim'
--- Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'psliwka/vim-smoothie'
 Plug 'unblevable/quick-scope'
--- Plug 'ggandor/leap.nvim'
--- Plug 'shortcuts/no-neck-pain.nvim'
--- Plug 'airblade/vim-rooter'
--- Plug 'wfxr/minimap.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 -- Linters
--- Plug 'folke/trouble.nvim'
 Plug 'mfussenegger/nvim-lint'
 Plug 'digitaltoad/vim-pug'
 Plug 'jwalton512/vim-blade'
@@ -34,7 +27,6 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'joereynolds/sql-lint'
 Plug 'vim-python/python-syntax'
 Plug 'tbastos/vim-lua'
--- Plug 'preservim/vim-markdown'
 Plug 'ap/vim-css-color'
 
 -- Git
@@ -57,3 +49,13 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
 vim.call('plug#end')
+
+-- Other plugins
+-- Plug 'NMAC427/guess-indent.nvim'
+-- Plug 'lukas-reineke/indent-blankline.nvim'
+-- Plug 'ggandor/leap.nvim'
+-- Plug 'shortcuts/no-neck-pain.nvim'
+-- Plug 'airblade/vim-rooter'
+-- Plug 'wfxr/minimap.vim'
+-- Plug 'folke/trouble.nvim'
+-- Plug 'preservim/vim-markdown'
