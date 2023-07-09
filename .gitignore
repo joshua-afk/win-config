@@ -28,6 +28,8 @@
 .zcompdump*
 .zsh*
 .histfile
+.config/configstore
+.config/simple-update-notifier
 
 #Folders
 AppData
