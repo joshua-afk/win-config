@@ -85,3 +85,8 @@ snippet join-split "TRICKS: array to string collection for query"
 		@array.join(',').split(',')
 snippet find-key-value-in-array "TRICKS: find key value in another array"
 		value = current_array.find { |ca| ca['Id'] == other_array['Id'] }
+snippet hash
+		grades = { "Jane Doe" => 10, "Jim Doe" => 6 }
+		# OR
+		grades = Hash.new
+		grades["Dorothy Doe"] = 9
