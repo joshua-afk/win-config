@@ -30,14 +30,15 @@ snippet like
 		SELECT *
 		FROM table_name
 		WHERE columnName LIKE '%keyword%'
-snippet addcol
-		IF dbo.fnIsColumnExists('tblLeaveFiling', 'CustomJTIIsLeavePlanRejected') = 0
-				ALTER TABLE tblLeaveFiling
-				ADD CustomJTIIsLeavePlanRejected BIT NOT NULL CONSTRAINT [DF_tblLeaveFiling_CustomJTIIsLeavePlanRejected] DEFAULT(0)
-		GO
-snippet delcol
+snippet col-del
 		ALTER TABLE tblCustomers
 		DROP COLUMN Email
+snippet col-add
+		IF dbo.fnIsColumnExists('tblPayElements', 'CustomJTIIncludeInFinalPayAsProrate') = 0
+				ALTER TABLE tblPayElements ADD CustomJTIIncludeInFinalPayAsProrate BIT NOT NULL DEFAULT (0)
+
+
+		GO
 snippet case
 		CASE
 				WHEN condition1 THEN result1
