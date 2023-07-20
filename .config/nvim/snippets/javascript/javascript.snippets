@@ -136,6 +136,14 @@ snippet try-catch "ERROR-HANDLING: try catch validation"
 		} catch (err) {
 			console.log('Error: ' + err.message)
 		}
+snippet try-catch-finally "ERROR-HANDLING: try catch finally validation"
+		try {
+			$0
+		} catch (err) {
+			console.log('Error: ' + err.message)
+		} finally {
+			// finallyCode - Code block to be executed regardless of the try result
+		}
 snippet throw "ERROR-HANDLING: skip the block and throw an error"
 		throw 'Attachment cannot be empty, Please add attachment.'
 		throw new Error('Required');  // generates an error object with the message of Required
