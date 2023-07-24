@@ -18,7 +18,7 @@ ls.setup({
 ls.filetype_extend("lua",        {"references"})
 ls.filetype_extend("ruby",       {"references"})
 ls.filetype_extend("blade",      {"references"})
-ls.filetype_extend("javascript", {"references", "javascript-moment", "javascript-node", "javascript-webix"})
+ls.filetype_extend("javascript", {"references", "javascript-moment", "javascript-node", "javascript-webix", "javascript-express"})
 ls.filetype_extend("blade",      {"references", "html"})
 ls.filetype_extend("html",       {"references"})
 ls.filetype_extend("eruby",      {"references", "html"})
