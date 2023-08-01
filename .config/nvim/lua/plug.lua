@@ -6,6 +6,9 @@ vim.call('plug#begin', fn.stdpath('data')..'/plugged')
 -- Core
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/vim-easy-align'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'monaqa/dial.nvim'
+Plug 'johmsalas/text-case.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
@@ -50,9 +53,13 @@ Plug 'hrsh7th/nvim-cmp'
 
 vim.call('plug#end')
 
+-- Some plugins config
+vim.cmd [[
+  let g:gitblame_enabled = 0
+]]
+
 -- Other plugins
 -- Plug 'NMAC427/guess-indent.nvim'
--- Plug 'lukas-reineke/indent-blankline.nvim'
 -- Plug 'ggandor/leap.nvim'
 -- Plug 'shortcuts/no-neck-pain.nvim'
 -- Plug 'airblade/vim-rooter'
