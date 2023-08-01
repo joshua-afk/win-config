@@ -23,6 +23,7 @@
     del = branch -D
     new = checkout -b
     amend = commit --amend
+    discard = restore
 [difftool "sourcetree"]
 	cmd = "'' "
 [mergetool "sourcetree"]
