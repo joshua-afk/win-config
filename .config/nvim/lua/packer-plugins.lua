@@ -40,6 +40,7 @@ return require('packer').startup(function()
     tag = "v1.2.*",
     run = "make install_jsregexp"
   })
+  use {'akinsho/bufferline.nvim', tag = "v3.*"}
 
 	-- Theme
 	use { "catppuccin/nvim", as = "catppuccin" }
@@ -59,7 +60,7 @@ return require('packer').startup(function()
     "benfowler/telescope-luasnip.nvim",
     module = "telescope._extensions.luasnip"
   }
-  
+
   if packer_bootstrap then
     require('packer').sync()
   end
@@ -70,3 +71,9 @@ end)
 -- use "folke/styler.nvim"
 -- use 'SidOfc/carbon.nvim'
 -- use {'akinsho/bufferline.nvim', tag = "v3.*"}
+-- use {
+--   "narutoxy/dim.lua",
+--   config = function()
+--     require('dim').setup({})
+--   end
+-- }
