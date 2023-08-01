@@ -20,10 +20,9 @@ local ignore_these = {
 telescope.setup {
   defaults = {
     -- prompt_prefix = '🔍 ',
-    color_devicons = false,
+    color_devicons = true,
     layout_strategy = 'flex',
     file_ignore_patterns = ignore_these,
-    -- preview = false
   },
   pickers = {
     find_files = {
