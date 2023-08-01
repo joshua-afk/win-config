@@ -176,7 +176,9 @@ snippet date-add-day
 		const day = (24*60*60*1000)
 		res['ExpirationDate'] = new Date(dateCreated.getTime() + 1 * day)
 snippet date-date-parse
-		res['CreationDate'] = res['CreationDate'].toISOString().slice(0, 10).replace('T', ' ')
+		res.CreationDate = res.CreationDate.toISOString().slice(0, 10).replace('T', ' ')
+		// OR (moment.js, better use this)
+		res.CreationDate = moment(res.CreationDate).format('YYYY-MM-DD')
 snippet copy-object
 		// spread method
 		let obj2 = {...obj1}
@@ -216,3 +218,13 @@ snippet custom-webix-formevents
 # ==CUSTOM-OUTPUTS==
 snippet customroute
 		custom?custom_url=custom_employee/import
+snippet dum
+		console.log('dummy output!')
+snippet dumm
+		console.log('dummy output!!')
+snippet dummm
+		console.log('dummy output!!!')
+snippet dummmm
+		console.log('dummy output!!!!')
+snippet dummmmm
+		console.log('dummy output!!!!!')
