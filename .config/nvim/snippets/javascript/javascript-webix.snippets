@@ -4,6 +4,7 @@
 #  =WEBIX-AJAX
 #  =WEBIX-UI
 #  =WEBIX-MESSAGE
+#  =WEBIX-WAITBOX
 #  =WEBIX-METHOD
 #  =WEBIX-EVENTS
 #  =WEBIX-PROPERTIES
@@ -127,15 +128,20 @@ snippet webix-ui-checkbox
 		}
 # ==WEBIX-MESSAGE==
 snippet webix-message-confirm "message: confirm message box"
-		confirmMessageBox("Delete selected record(s)?", function () {
+		confirmMessageBox('Delete selected record(s)?', function () {
 			// if comfirm, do this
 		});
 snippet webix-message-info "message: confirm message box"
-		informMessageBox("You don't have access to this module")
+		informMessageBox('You don't have access to this module')
 snippet webix-message-warning "message: confirm message box"
 		warningMessageBox(file.name + ' exceeds to ' + max + 'MB file limit.')
 snippet webix-message-error "message: error message box"
-		errorMessageBox("Error loading lookup data.");
+		errorMessageBox('Error loading lookup data.')
+# ==WEBIX-WAITBOX==
+snippet webix-show-wait-box "message: show wait box"
+		showWaitBox('Loading lookup data...')
+snippet webix-close-wait-box "message: show wait box"
+		closeWaitBox('Loading lookup data...')
 # ==WEBIX-METHOD==
 snippet webix-get-item "METHOD: gets the object of the data item with the specified ID"
 		//id is numeric
