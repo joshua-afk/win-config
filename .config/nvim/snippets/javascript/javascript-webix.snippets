@@ -161,15 +161,38 @@ snippet webix-each-row 'METHOD: datatable, iterates over all rows in the table'
 			const currentRow = trainingDocumentGranteeGrid.getItem(row)
 			employee_ids.push(currentRow['EmployeeId'])
 		})
+snippet webix-define 'METHOD: view, redefines a single configuration property'
+		// redefines the width of the list
+		$$("mylist").define("width", 300);
+		$$("mylist").resize();
+		
+		// changes the label of the button
+		$$("button1").define("label", "New value");
+		$$("button1").refresh();
+		
+		// changes multiple properties at once
+		$$("text2").define({
+				value:"123",
+				label:"New label"
+		});
+		$$("text2").refresh();
 # ==WEBIX-EVENTS==
-snippet onChange "EVENTS: jscombo"
+snippet webix-on-change "EVENTS: jscombo"
 		$$("control").attachEvent("onChange", function(newValue, oldValue, config){
 				// code
 		});
-snippet onItemClick "EVENTS: jscombo"
+snippet webix-on-item-click "EVENTS: jscombo"
 		button.attachEvent("onItemClick", function(id, e){
 				// code
 		});
+snippet webix-is-new "EVENTS: base is form new"
+		base.isNew()
+snippet webix-is-view "EVENTS: base is form view"
+		base.isView()
+snippet webix-is-edit "EVENTS: base is form edit"
+		base.isEdit()
+snippet webix-is-save "EVENTS: base is form save"
+		base.isSave()
 # ==WEBIX-PROPERTIES==
 snippet padding "PROPERTIES: padding"
     padding: 10,
