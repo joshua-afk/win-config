@@ -9,12 +9,13 @@
 #    = TRANSFORM
 #    = CHECKERS
 #    = ERROR-HANDLING
+#    = EVENTS
 #
 #  = CUSTOM
-#		 = CUSTOM-VANILLA-FUNCTIONS
-#		 = CUSTOM-EXPRESS
-#		 = CUSTOM-WEBIX
-#		 = CUSTOM-OUTPUTS
+#    = CUSTOM-VANILLA-FUNCTIONS
+#    = CUSTOM-EXPRESS
+#    = CUSTOM-WEBIX
+#    = CUSTOM-OUTPUTS
 #
 # ========================= #
 
@@ -31,20 +32,20 @@ snippet ifelse "CONDITIONS: ifelse statement"
 		}
 snippet switch "CONDITIONS: switch case"
 		switch(expression) {
-		  case x:
+			case x:
 				// code block
 				break;
-		  case y:
+			case y:
 				// code block
 				break;
-		  default:
+			default:
 				// code block
-		} 
+		}
 snippet array-true "CONDITIONS: check if array has value"
 		if (array.length > 0) {
 			// code here
 		}
-# ==LOOPS==
+# == LOOPS ==
 snippet for "LOOP: for loop"
 		for (let i = 0; obj < obj.length; i++) {
 		}
@@ -58,7 +59,7 @@ snippet forof "LOOPS: forof loop (values)"
 		}
 snippet foreach "LOOPS: foreach loop 1 liner"
 		array1.forEach(element => console.log(element));
-# ==STANDARD==
+# == STANDARD ==
 snippet cl "STANDARD: console.log"
 		console.log($0)
 snippet clkv "STANDARD: console.log with key and value"
@@ -103,7 +104,7 @@ snippet custom-route-data-by-id "STANDARD: custom route"
 				res.json({error_message: err.message, id})
 			}
 		})
-# ==TRANSFORM==
+# == TRANSFORM ==
 snippet parse-int "TRANSFORM: parse value to int"
 		parseInt(var)
 snippet parse-float "TRANSFORM: parse value to float"
@@ -122,14 +123,14 @@ snippet parse-boolean "TRANSFORM: string boolean to boolean"
 		const IsActive = ('true' === 'true')
 		// OR
 		const IsActive = JSON.parse("TRUE".toLowerCase())
-# ==CHECKERS==
+# == CHECKERS ==
 snippet check-if-undefined "CHECKERS: check if variable is undefined"
 		if (typeof myVar !== 'undefined')
 snippet is-blank "CHECKERS: isBlank from RoR"
 		var isBlank = function (value) {
 				return value == undefined || value == null || value.toString() == '';
 		};
-# ==ERROR-HANDLING==
+# == ERROR-HANDLING ==
 snippet try-catch "ERROR-HANDLING: try catch validation"
 		try {
 			$0
@@ -147,7 +148,29 @@ snippet try-catch-finally "ERROR-HANDLING: try catch finally validation"
 snippet throw "ERROR-HANDLING: skip the block and throw an error"
 		throw 'Attachment cannot be empty, Please add attachment.'
 		throw new Error('Required');  // generates an error object with the message of Required
-# ==CUSTOM-VANILLA-FUNCTIONS==
+# == EVENTS ==
+snippet event-click "EVENTS: element click event"
+		element.onclick = function(e) {
+			// code here...
+		}
+
+		// OR
+
+		element.addEventListener('click', function(e) {
+			// code here...
+		})
+snippet event-submit "EVENTS: form submit event"
+		form.onsubmit = function(e) {
+			// code here...
+		}
+
+		// OR
+
+		form.addEventListener('submit', function(e) {
+			// code here...
+		})
+
+# == CUSTOM-VANILLA-FUNCTIONS ==
 snippet custom-date-ordinal
 		var prefix = function (day) {
 				var prfx = '';
@@ -162,6 +185,12 @@ snippet custom-date-ordinal
 				}
 				return prfx;
 		};
+snippet get-data-hour-minute-second
+    const dateTime = new Date()
+    const date = ("0" + dateTime.getDate()).slice(-2)
+    const hour = dateTime.getHours()
+    const minute = dateTime.getMinutes()
+    const seconds = dateTime.getSeconds()
 snippet change-object-key-value
 		Object.entries(res).map(([key, value]) => {
 			res[key]['Name'] = String(value)
@@ -182,7 +211,7 @@ snippet date-date-parse
 snippet copy-object
 		// spread method
 		let obj2 = {...obj1}
-# ==CUSTOM-WEBIX==
+# == CUSTOM-WEBIX ==
 snippet custom-webix-formevents
 		define(function () {
 			function main(config) {
@@ -215,7 +244,7 @@ snippet custom-webix-formevents
 			}
 			return main
 		})
-# ==CUSTOM-OUTPUTS==
+# == CUSTOM-OUTPUTS ==
 snippet customroute
 		custom?custom_url=custom_employee/import
 snippet dum
