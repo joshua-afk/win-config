@@ -1,0 +1,29 @@
+# =========================
+# Contents
+#
+#  ==REQUEST
+#
+# =========================
+
+# ==REQUEST==
+snippet axios-post "AXIOS: post request"
+	const url = 'http://localhost:8081/public/security/v1/token'
+
+  let data = new URLSearchParams()
+  data.append('client_id', clientId)
+  data.append('client_secret', clientSecret)
+  data.append('grant_type', 'client_credentials')
+  data.append('scope', 'all')
+
+  const headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+
+	const response = await axios.post(url, data, { headers })
+
+snippet axios-get "AXIOS: get request"
+		const headers = {
+			'Content-Type': 'application/json',
+		}
+
+		const response = await axios.get('/user?id=123', { headers })
