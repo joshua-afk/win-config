@@ -8,6 +8,7 @@
 #  =WEBIX-METHOD
 #  =WEBIX-EVENTS
 #  =WEBIX-PROPERTIES
+#  =WEBIX-CUSTOM
 #
 # =========================
 
@@ -221,3 +222,36 @@ snippet header "PROPERTIES: header"
 				"font-weight": "600 !important"
 			}
 		}
+# ==WEBIX-CUSTOM==
+snippet custom-webix-formevents
+		define(function () {
+			function main(config) {
+			}
+
+			main.prototype.getEvents = function (base) {
+				const essManagerUserAccountsApproversCustomColumn = function () {
+					return {
+						id: "ThirdApproverExcessHourFiling",
+						header: "3rd Approver Excess Hour Filing",
+						fillspace: true,
+						template: "{common.checkbox()}",
+						css: {"text-align": "center"},
+						checkValue: true,
+						uncheckValue: false
+					}
+				}
+				const events = {
+					onCustomBeforeFormShow: function (form) {
+						if(isAccessible["UserAccounts.Custom"]){
+							const grid = $$("essManagerUserAccountsApproversTabGrid").getGrid()
+							const columns = grid.config.columns
+
+							columns.splice(columns.length, 0, essManagerUserAccountsApproversCustomColumn())
+							grid.refreshColumns()
+						}
+					}
+				}
+				return events
+			}
+			return main
+		})

@@ -10,11 +10,10 @@
 #    = CHECKERS
 #    = ERROR-HANDLING
 #    = EVENTS
+#    = CREATE-ELEMENTS
 #
 #  = CUSTOM
 #    = CUSTOM-VANILLA-FUNCTIONS
-#    = CUSTOM-EXPRESS
-#    = CUSTOM-WEBIX
 #    = CUSTOM-OUTPUTS
 #
 # ========================= #
@@ -169,7 +168,17 @@ snippet event-submit "EVENTS: form submit event"
 		form.addEventListener('submit', function(e) {
 			// code here...
 		})
-
+# == CREATE-ELEMENTS ==
+snippet create-element-div "CREATE: create div element"
+		let div = ''
+		div = document.createElement('div')
+		div.setAttribute('height', '100px')
+		div.setAttribute('width', '100px')
+		container.classList.add('generated-input-field')
+snippet create-element-p "CREATE: create p element"
+		const p = document.createElement("p")
+		const text = document.createTextNode('This is sample text')
+		p.appendChild(text)
 # == CUSTOM-VANILLA-FUNCTIONS ==
 snippet custom-date-ordinal
 		var prefix = function (day) {
@@ -211,39 +220,6 @@ snippet date-date-parse
 snippet copy-object
 		// spread method
 		let obj2 = {...obj1}
-# == CUSTOM-WEBIX ==
-snippet custom-webix-formevents
-		define(function () {
-			function main(config) {
-			}
-
-			main.prototype.getEvents = function (base) {
-				const essManagerUserAccountsApproversCustomColumn = function () {
-					return {
-						id: "ThirdApproverExcessHourFiling",
-						header: "3rd Approver Excess Hour Filing",
-						fillspace: true,
-						template: "{common.checkbox()}",
-						css: {"text-align": "center"},
-						checkValue: true,
-						uncheckValue: false
-					}
-				}
-				const events = {
-					onCustomBeforeFormShow: function (form) {
-						if(isAccessible["UserAccounts.Custom"]){
-							const grid = $$("essManagerUserAccountsApproversTabGrid").getGrid()
-							const columns = grid.config.columns
-
-							columns.splice(columns.length, 0, essManagerUserAccountsApproversCustomColumn())
-							grid.refreshColumns()
-						}
-					}
-				}
-				return events
-			}
-			return main
-		})
 # == CUSTOM-OUTPUTS ==
 snippet customroute
 		custom?custom_url=custom_employee/import
