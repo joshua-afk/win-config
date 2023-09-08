@@ -220,6 +220,10 @@ snippet date-date-parse
 snippet copy-object
 		// spread method
 		let obj2 = {...obj1}
+snippets string-array-to-array
+		// Needs to be double quote
+    const stringArray = '["PDF", "DOC", "DOCX", "BMP" "XLS", "XLSX", "CSV", "TXT" "JPG", "JPEG", "TIF", "RTF" "TIFF", "GIF", "PNG", "ZIP"]'
+    const parsedArray = JSON.parse(stringArray)
 # == CUSTOM-OUTPUTS ==
 snippet customroute
 		custom?custom_url=custom_employee/import
