@@ -148,6 +148,8 @@ snippet throw "ERROR-HANDLING: skip the block and throw an error"
 		throw 'Attachment cannot be empty, Please add attachment.'
 		throw new Error('Required');  // generates an error object with the message of Required
 # == EVENTS ==
+snippet event-prevent-default "EVENTS: remove element default action"
+		e.preventDefault()
 snippet event-click "EVENTS: element click event"
 		element.onclick = function(e) {
 			// code here...
