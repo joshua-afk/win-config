@@ -10,6 +10,7 @@
 #    = CHECKERS
 #    = ERROR-HANDLING
 #    = EVENTS
+#    = HTML-DOM
 #    = CREATE-ELEMENTS
 #
 #  = CUSTOM
@@ -61,8 +62,8 @@ snippet foreach "LOOPS: foreach loop 1 liner"
 # == STANDARD ==
 snippet cl "STANDARD: console.log"
 		console.log($0)
-snippet clkv "STANDARD: console.log with key and value"
-		console.log('$1: ${$1}')
+snippet clv "STANDARD: console.log with key and value"
+		console.log('$0', $0)
 snippet settimeout "STANDARD: set timeout"
 		setTimeout(() => {
 			console.log("Delayed for 1 second.");
@@ -151,7 +152,7 @@ snippet throw "ERROR-HANDLING: skip the block and throw an error"
 snippet event-prevent-default "EVENTS: remove element default action"
 		e.preventDefault()
 snippet event-click "EVENTS: element click event"
-		element.onclick = function(e) {
+		form.onclick = e => {
 			// code here...
 		}
 
@@ -161,7 +162,7 @@ snippet event-click "EVENTS: element click event"
 			// code here...
 		})
 snippet event-submit "EVENTS: form submit event"
-		form.onsubmit = function(e) {
+		form.onsubmit = e => {
 			// code here...
 		}
 
@@ -170,6 +171,11 @@ snippet event-submit "EVENTS: form submit event"
 		form.addEventListener('submit', function(e) {
 			// code here...
 		})
+# == HTML-DOM ==
+snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specified element"
+		element.setAttribute(name, value)
+snippet dom-remove-attribute "EVENTS: removes the attribute with the specified name from the element"
+		element.setAttribute(name, value)
 # == CREATE-ELEMENTS ==
 snippet create-element-div "CREATE: create div element"
 		let div = ''
