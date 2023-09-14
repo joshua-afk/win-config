@@ -38,6 +38,7 @@ Plug 'f-person/git-blame.nvim'
 
 -- Theme
 Plug 'rakr/vim-one'
+Plug 'folke/tokyonight.nvim'
 
 -- ETC
 Plug 'tpope/vim-surround'
