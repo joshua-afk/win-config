@@ -9,6 +9,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'monaqa/dial.nvim'
 Plug 'johmsalas/text-case.nvim'
+Plug 'notjedi/nvim-rooter.lua'
+Plug 'zegervdv/nrpattern.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'numToStr/Comment.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
@@ -17,6 +21,11 @@ Plug 'psliwka/vim-smoothie'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'petertriho/nvim-scrollbar'
+
+-- File Explorer
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
 
 -- Linters
 Plug 'mfussenegger/nvim-lint'
@@ -38,7 +47,6 @@ Plug 'f-person/git-blame.nvim'
 
 -- Theme
 Plug 'rakr/vim-one'
-Plug 'folke/tokyonight.nvim'
 
 -- ETC
 Plug 'tpope/vim-surround'
@@ -51,6 +59,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 vim.call('plug#end')
 
