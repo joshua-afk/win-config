@@ -34,7 +34,7 @@ vim.cmd [[
 ]]
 
 -- extend snippets
-ls.filetype_extend("javascript", { "javascript-moment", "javascript-node" })
+ls.filetype_extend("javascript", { "javascript-custom", "javascript-moment", "javascript-node", "javascript-mssql"})
 
 require("luasnip.loaders.from_lua").load({paths = lua_snip_path})
 

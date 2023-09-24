@@ -13,7 +13,7 @@ return {
 	--
  -- --  ls.parser.parse_snippet(
 	-- -- 	"exo",
-	-- -- 	"Wow! This ${1:Stuff} really ${2:works. ${3:Well, a bit.}}"
+	-- -- 	"Wow! This ${1:Stuff} really ${2:works. ${3:Well, a bit.}}",
 	-- -- ),
 	--
  --  -- s("fn", {
@@ -24,5 +24,5 @@ return {
  --  --   t("class "),
  --  --   i(2),
  --  --   t(" "),
- --  -- })
+ --  -- }),
 }
