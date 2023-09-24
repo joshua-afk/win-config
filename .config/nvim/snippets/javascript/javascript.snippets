@@ -10,6 +10,7 @@
 #    = CHECKERS
 #    = ERROR-HANDLING
 #    = EVENTS
+#    = METHODS
 #    = HTML-DOM
 #    = CREATE-ELEMENTS
 #
@@ -61,9 +62,9 @@ snippet foreach "LOOPS: foreach loop 1 liner"
 		array1.forEach(element => console.log(element));
 # == STANDARD ==
 snippet cl "STANDARD: console.log"
-		console.log($0)
+		console.log($1)
 snippet clv "STANDARD: console.log with key and value"
-		console.log('$0', $0)
+		console.log('$1', $2)
 snippet settimeout "STANDARD: set timeout"
 		setTimeout(() => {
 			console.log("Delayed for 1 second.");
@@ -152,25 +153,33 @@ snippet throw "ERROR-HANDLING: skip the block and throw an error"
 snippet event-prevent-default "EVENTS: remove element default action"
 		e.preventDefault()
 snippet event-click "EVENTS: element click event"
-		form.onclick = e => {
-			// code here...
-		}
+		form.onclick = e => { }
 
 		// OR
 
-		element.addEventListener('click', function(e) {
-			// code here...
-		})
+		element.addEventListener('click', function(e) {})
 snippet event-submit "EVENTS: form submit event"
-		form.onsubmit = e => {
-			// code here...
-		}
+		form.onsubmit = e => {}
 
 		// OR
 
-		form.addEventListener('submit', function(e) {
-			// code here...
-		})
+		form.addEventListener('submit', function(e) {})
+snippet event-keypress "EVENTS: use this instead of keypress"
+		// WARNING! DEPRECATED: Use "keydown" instead.
+		document.onkeypress = e => {}
+
+		// OR
+
+		document.addEventListener("keypress", (event) => {})
+snippet event-keydown "EVENTS: use this instead of keypress"
+		document.onkeydown = e => {}
+
+		// OR
+
+		document.addEventListener("keydown", (event) => {});
+# == METHODS ==
+snippet includes "EVENTS: check if array has centain value among entries"
+		array.includes('world')
 # == HTML-DOM ==
 snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specified element"
 		element.setAttribute(name, value)
