@@ -19,7 +19,7 @@ cmp.setup({
     ['<C-f>'] = mapping.scroll_docs(4),
     ['<C-Space>'] = mapping.complete(),
     ['<C-e>'] = mapping.abort(),
-    ['<TAB>'] = mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- ['<TAB>'] = mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     -- ['<CR>'] = mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = config.sources({

@@ -29,7 +29,7 @@ return require('packer').startup(function()
 	use 'neovim/nvim-lspconfig'
   use({
     "L3MON4D3/LuaSnip",
-    tag = "2.*",
+    tag = "v2.*",
     run = "make install_jsregexp"
   })
   use {'akinsho/bufferline.nvim', tag = "v3.*"}
