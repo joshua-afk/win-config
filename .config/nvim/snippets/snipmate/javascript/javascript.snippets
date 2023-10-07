@@ -12,6 +12,7 @@
 #    = EVENTS
 #    = METHODS
 #    = HTML-DOM
+#    = ARRAY
 #    = CREATE-ELEMENTS
 #
 #  = CUSTOM
@@ -136,13 +137,13 @@ snippet try-catch "ERROR-HANDLING: try catch validation"
 		try {
 			$0
 		} catch (err) {
-			console.log('Error: ' + err.message)
+			console.error('Error: ' + err.message)
 		}
 snippet try-catch-finally "ERROR-HANDLING: try catch finally validation"
 		try {
 			$0
 		} catch (err) {
-			console.log('Error: ' + err.message)
+			console.error('Error: ' + err.message)
 		} finally {
 			// finallyCode - Code block to be executed regardless of the try result
 		}
@@ -177,9 +178,46 @@ snippet event-keydown "EVENTS: use this instead of keypress"
 		// OR
 
 		document.addEventListener("keydown", (event) => {});
+snippet event-contextmenu "EVENTS: fires when the user attempts to open a context menu"
+		document.oncontextmenu  = e => {}
+
+		// OR
+
+		document.addEventListener("contextmenu ", (event) => {});
+snippet event-mousemove "EVENTS: fired at an element when a pointing device (usually a mouse) is moved while the cursor's hotspot is inside it"
+		document.onmousemove = e => {}
+
+		// OR
+
+		document.addEventListener("mousemove ", (event) => {});
+snippet event-focus "EVENTS: fires when an element has received focus"
+		document.onfocus  = e => {}
+ 
+		// OR
+
+		document.addEventListener("focus ", (event) => {});
+snippet event-mousehover "EVENTS: mouseover"
+		document.onmouseover  = e => {}
+
+		// OR
+
+		document.addEventListener("mouseover ", (event) => {});
+snippet event-mouseover "EVENTS: fired at an Element when a pointing device (such as a mouse or trackpad) is used to move the cursor onto the element or one of its child elements"
+		document.onmouseover  = e => {}
+
+		// OR
+
+		document.addEventListener("mouseover ", (event) => {});
 # == METHODS ==
 snippet includes "EVENTS: check if array has centain value among entries"
 		array.includes('world')
+# == ARRAY ==
+snippet array-remove-item "EVENTS: sets the value of an attribute on the specified element"
+		let indexToRemove = arrayName.indexOf(key)
+
+		if (indexToRemove !== -1) {
+			arrayName.splice(indexToRemove, 1);
+		}
 # == HTML-DOM ==
 snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specified element"
 		element.setAttribute(name, value)
