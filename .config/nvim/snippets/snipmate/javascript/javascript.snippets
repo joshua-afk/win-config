@@ -128,6 +128,8 @@ snippet parse-boolean "TRANSFORM: string boolean to boolean"
 # == CHECKERS ==
 snippet check-if-undefined "CHECKERS: check if variable is undefined"
 		if (typeof myVar !== 'undefined')
+snippet check-if-has-classname "CHECKERS: check if element has classname"
+		element.classList.contains('sample-class');
 snippet is-blank "CHECKERS: isBlank from RoR"
 		var isBlank = function (value) {
 				return value == undefined || value == null || value.toString() == '';
