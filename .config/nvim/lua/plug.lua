@@ -6,7 +6,7 @@ vim.call('plug#begin', fn.stdpath('data')..'/plugged')
 -- Core
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'junegunn/vim-easy-align'
-Plug 'lukas-reineke/indent-blankline.nvim'
+-- Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'monaqa/dial.nvim'
 Plug 'johmsalas/text-case.nvim'
 Plug 'notjedi/nvim-rooter.lua'
@@ -40,6 +40,7 @@ Plug 'joereynolds/sql-lint'
 Plug 'vim-python/python-syntax'
 Plug 'tbastos/vim-lua'
 Plug 'ap/vim-css-color'
+Plug 'dart-lang/dart-vim-plugin'
 
 -- Git
 Plug 'tpope/vim-fugitive'
