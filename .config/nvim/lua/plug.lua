@@ -41,6 +41,7 @@ Plug 'vim-python/python-syntax'
 Plug 'tbastos/vim-lua'
 Plug 'ap/vim-css-color'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'akinsho/flutter-tools.nvim'
 
 -- Git
 Plug 'tpope/vim-fugitive'
