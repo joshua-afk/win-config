@@ -1,17 +1,18 @@
 [user]
-	name = Joshua Ryan V. Velasquez
+	name = Joshua Ryan Velasquez
 	email = jr.velasquez@jeonsoft.com
 [github]
     user = joshua-afk
 [core]
 	editor = nvim
 	autocrlf = true
-	excludesfile = oz
+	excludesfile = 
 [alias]
     hard = reset --hard
     soft = reset --soft
     ci = commit
     p = push
+    s = status -s
     st = status
     cm = commit -m
     co = checkout
@@ -24,6 +25,7 @@
     new = checkout -b
     amend = commit --amend
     discard = restore
+    contributors = shortlog --summary --numbered
 [difftool "sourcetree"]
 	cmd = "'' "
 [mergetool "sourcetree"]
