@@ -1,3 +1,3 @@
 @echo off
 
-cd %USERPROFILE%/Documents && explorer.exe .
+explorer.exe %USERPROFILE%/Documents

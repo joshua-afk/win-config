@@ -1,3 +1,3 @@
 @echo off
 
-D: && cd \_databases && exp
+explorer.exe D:\_databases
