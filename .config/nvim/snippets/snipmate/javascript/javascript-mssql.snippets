@@ -1,0 +1,36 @@
+# =========================
+# Contents
+#
+#  ==QUERY
+#
+# =========================
+
+# ==QUERY==
+snippet mssql-insert-bulk "MSSQL: mass/bulk insert"
+    // Bulk Insert
+    try {
+      const table = new sql.Table(this.tableName)
+
+      // If you set table.create to true, module will check if the table exists before it start sending data. If it doesn't, it will automatically create it.
+      table.create = true
+
+			// Should match the actual definition in SQL Server. (eg. Type, Length)
+      table.columns.add('StorageObjectId', sql.Int, {nullable: false})
+      table.columns.add('ObjectHash', sql.VarChar(24), {nullable: false})
+      table.columns.add('EmployeeId', sql.Int, {nullable: false})
+      table.columns.add('Attribute', sql.VarChar('MAX'), {nullable: false})
+
+      for (const i in attributes) {
+        const attribute = JSON.stringify(attributes[i])
+        table.rows.add(storageObjectId, hash, employeeId, attribute)
+      }
+
+      await this._conn.request()
+      .bulk(table, (err, result) => {
+        if (err !== null) {
+          console.error('Error: ' + err.message)
+        }
+      })
+    } catch (err) {
+      console.error('Error: ' + err.message)
+    }
