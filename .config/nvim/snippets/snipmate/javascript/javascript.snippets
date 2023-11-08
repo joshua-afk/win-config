@@ -14,6 +14,7 @@
 #    = HTML-DOM
 #    = ARRAY
 #    = CREATE-ELEMENTS
+#    = WINDOW
 #
 #  = CUSTOM
 #    = CUSTOM-VANILLA-FUNCTIONS
@@ -113,6 +114,8 @@ snippet parse-float "TRANSFORM: parse value to float"
 		parseFloat(var)
 snippet parse-json "TRANSFORM: parse value to json"
 		JSON.parse(var)
+snippet json-stringify "TRANSFORM: parse value from JSON object to string"
+		JSON.stringify(obj)
 snippet parse-string "TRANSFORM: parse value to string"
 		String(var)
 snippet parse-upper-case "TRANSFORM: transform text to uppercase"
@@ -242,6 +245,9 @@ snippet create-element-p "CREATE: create p element"
 		const p = document.createElement("p")
 		const text = document.createTextNode('This is sample text')
 		p.appendChild(text)
+# == WINDOW ==
+snippet alert "WINDOW: instructs the browser to display a dialog with an optional message"
+		alert(\`testing\`)
 # == CUSTOM-VANILLA-FUNCTIONS ==
 snippet custom-date-ordinal
 		var prefix = function (day) {
