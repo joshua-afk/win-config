@@ -16,5 +16,5 @@ require 'mappings'
 -------- AUTO-COMMANDS --------
 require 'auto-commands'
 
--------- AUTO-COMMANDS --------
+-------- NEOVIDE --------
 require 'neovide'
