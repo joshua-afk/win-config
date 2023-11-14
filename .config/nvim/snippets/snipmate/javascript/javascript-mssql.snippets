@@ -6,6 +6,56 @@
 # =========================
 
 # ==QUERY==
+snippet mssql-request-select "MSSQL: select query"
+		const result = await sqlConn.request()
+			.input('id', sql.Int, id)
+			.input('company_id', sql.Int, sess.company_id)
+			.query('SELECT Id, CompanyId, TrainingName, TrainingCode, StartDate, EndDate, StartTime, EndTime, TrainingVenue, TrainingDescription, Active FROM tblCustomTGITrainings WHERE Id = @id AND CompanyId = @company_id')
+snippet mssql-request-select-in "MSSQL: select in query"
+    const ids = [1, 2, 3]
+    const request = this._conn.request()
+
+    for (const i in ids) {
+      request.input(\`id${i}\`, sql.Int, ids[i])
+    }
+
+    const placeholders = ids.map((id, i) => \`@id${i}\`).join(',')
+
+    const result = await request.query(\`SELECT *
+              FROM tblCustomTGIInteractJSAttributes
+              WHERE Id IN (${placeholders})\`)
+snippet mssql-request-insert "MSSQL: insert query"
+		await sqlConn.request()
+			.input('training_id', sql.Int, params.id)
+			.input('employee_id', sql.Int, sess.user_id)
+			.input('description', sql.VarChar(5000), params.description)
+			.input('file', sql.VarBinary, file.data)
+			.input('file_name', sql.VarChar(250), params.upload_fullpath)
+			.input('file_size', sql.Int, params.file_size)
+			.input('content_type', sql.VarChar(250), params.file_type)
+			.query('INSERT INTO tblCustomTGITrainingDocuments (TrainingId, EmployeeId, [Description], [File], [FileName], FileSize, ContentType) VALUES (@training_id, ABS(@employee_id), @description, @file, @file_name, @file_size, @content_type)')
+snippet mssql-request-update "MSSQL: update query"
+		await sqlConn.request()
+			.input('id', sql.Int, ids[id])
+			.input('company_id', sql.Int, sess.company_id)
+			.input('is_publish', sql.VarChar, value)
+			.query('UPDATE tblCustomTGITrainings SET IsPublished = @is_publish WHERE Id = @id AND CompanyId = @company_id')
+snippet mssql-request-delete "MSSQL: delete query"
+		await sqlConn.request()
+			.input('id', sql.Int, id)
+			.input('employee_id', sql.Int, sess.user_id)
+			.query('DELETE FROM tblCustomTGITrainingDocuments WHERE Id = @id AND EmployeeId = ABS(@employee_id)')
+snippet mssql-like "MSSQL: like query"
+    const { recordset } = await sqlConn.request()
+      .input('company_id', sql.Int, companyId)
+      .input('value', sql.VarChar(250), req.body.value)
+      .query(`SELECT [Id] AS id, e.FormalName As value
+              FROM tblEmployees e
+              WHERE e.Id > 1
+                AND CompanyId = @company_id
+                AND e.Active = 1
+                AND FormalName LIKE '%' + @value + '%'
+                ORDER BY FormalName`)
 snippet mssql-insert-bulk "MSSQL: mass/bulk insert"
     // Bulk Insert
     try {
@@ -14,7 +64,7 @@ snippet mssql-insert-bulk "MSSQL: mass/bulk insert"
       // If you set table.create to true, module will check if the table exists before it start sending data. If it doesn't, it will automatically create it.
       table.create = true
 
-			// Should match the actual definition in SQL Server. (eg. Type, Length)
+			/// Should match the actual definition in SQL Server. (eg. Type, Length)
       table.columns.add('StorageObjectId', sql.Int, {nullable: false})
       table.columns.add('ObjectHash', sql.VarChar(24), {nullable: false})
       table.columns.add('EmployeeId', sql.Int, {nullable: false})
