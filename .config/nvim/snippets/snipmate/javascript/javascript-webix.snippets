@@ -223,6 +223,9 @@ snippet header "PROPERTIES: header"
 			}
 		}
 # ==WEBIX-CUSTOM==
+snippet custom-webix-get-nested-element-ui
+		const tabview = $$("myTabView")
+		const tabbar = tabview.queryView({ view: "tabbar" }) // the tabbar ui is nested
 snippet custom-webix-formevents
 		define(function () {
 			function main(config) {
