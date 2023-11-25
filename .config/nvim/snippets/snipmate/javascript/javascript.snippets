@@ -2,7 +2,8 @@
 #
 # CONTENTS
 #
-#  = VANILLA
+#  = VANILLA/STANDARD
+#    = ARRAY
 #    = CONDITIONS
 #    = LOOPS
 #    = STANDARD
@@ -15,13 +16,19 @@
 #    = ARRAY
 #    = CREATE-ELEMENTS
 #    = WINDOW
+#    = STRING
 #
 #  = CUSTOM
 #    = CUSTOM-VANILLA-FUNCTIONS
 #    = CUSTOM-OUTPUTS
+#    = CUSTOM-ARRAY
 #
 # ========================= #
 
+# == ARRAY ==
+snippet includes "ARRAY: The includes() method of Array instances determines whether an array includes a certain value among its entries, returning true or false as appropriate"
+		const array = ['hello', world];
+		array.includes('world');
 # == CONDITIONS ==
 snippet if "CONDITIONS: if statement"
 		if ($1) {
@@ -45,6 +52,12 @@ snippet switch "CONDITIONS: switch case"
 				// code block
 		}
 snippet array-true "CONDITIONS: check if array has value"
+		if (!array.length) {
+			console.log('true');
+		}
+
+		// OR
+
 		if (array.length > 0) {
 			// code here
 		}
@@ -133,6 +146,8 @@ snippet check-if-undefined "CHECKERS: check if variable is undefined"
 		if (typeof myVar !== 'undefined')
 snippet check-if-has-classname "CHECKERS: check if element has classname"
 		element.classList.contains('sample-class');
+snippet check-if-has-character "CHECKERS: returns true if a string contains a specified string."
+		element.classList.contains('world')
 snippet is-blank "CHECKERS: isBlank from RoR"
 		var isBlank = function (value) {
 				return value == undefined || value == null || value.toString() == '';
@@ -213,16 +228,6 @@ snippet event-mouseover "EVENTS: fired at an Element when a pointing device (suc
 		// OR
 
 		document.addEventListener("mouseover ", (event) => {});
-# == METHODS ==
-snippet includes "EVENTS: check if array has centain value among entries"
-		array.includes('world')
-# == ARRAY ==
-snippet array-remove-item "EVENTS: sets the value of an attribute on the specified element"
-		let indexToRemove = arrayName.indexOf(key)
-
-		if (indexToRemove !== -1) {
-			arrayName.splice(indexToRemove, 1);
-		}
 # == HTML-DOM ==
 snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specified element"
 		element.setAttribute(name, value)
@@ -248,6 +253,9 @@ snippet create-element-p "CREATE: create p element"
 # == WINDOW ==
 snippet alert "WINDOW: instructs the browser to display a dialog with an optional message"
 		alert(\`testing\`)
+# == STRING ==
+snippet includes "STRING: The includes() method of String values performs a case-sensitive search to determine whether a given string may be found within this string, returning true or false as appropriate."
+		String.prototype.includes('test') ? true : false ;
 # == CUSTOM-VANILLA-FUNCTIONS ==
 snippet custom-date-ordinal
 		var prefix = function (day) {
@@ -293,6 +301,11 @@ snippets string-array-to-array
 		// Needs to be double quote
     const stringArray = '["PDF", "DOC", "DOCX", "BMP" "XLS", "XLSX", "CSV", "TXT" "JPG", "JPEG", "TIF", "RTF" "TIFF", "GIF", "PNG", "ZIP"]'
     const parsedArray = JSON.parse(stringArray)
+snippets concatinate-url
+		let url = \`/api/download_document\`
+		url += \`?hash=${String(pdf.hash)}\`
+		url += \`&originalFileName=${originalFileName}\`
+		url += \`&storageFileName=${storageFileName}\`
 # == CUSTOM-OUTPUTS ==
 snippet customroute
 		custom?custom_url=custom_employee/import
@@ -306,3 +319,10 @@ snippet dummmm
 		console.log('dummy output!!!!')
 snippet dummmmm
 		console.log('dummy output!!!!!')
+# == CUSTOM-ARRAY ==
+snippet custom-array-remove-item "EVENTS: sets the value of an attribute on the specified element"
+		let indexToRemove = arrayName.indexOf(key)
+
+		if (indexToRemove !== -1) {
+			arrayName.splice(indexToRemove, 1);
+		}
