@@ -1,3 +1,3 @@
 @echo off
 
-xcopy /s /Y "C:\Users\jr.velasquez\.config\alacritty" "C:\Users\jr.velasquez\AppData\Roaming\alacritty"
+xcopy /s /Y "%USERPROFILE%\.config\alacritty" "%USERPROFILE%\AppData\Roaming\alacritty"
