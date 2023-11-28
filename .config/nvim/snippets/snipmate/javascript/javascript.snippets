@@ -28,7 +28,7 @@
 # == ARRAY ==
 snippet includes "ARRAY: The includes() method of Array instances determines whether an array includes a certain value among its entries, returning true or false as appropriate"
 		const array = ['hello', world];
-		array.includes('world');
+		array.includes('world')
 # == CONDITIONS ==
 snippet if "CONDITIONS: if statement"
 		if ($1) {
@@ -52,11 +52,25 @@ snippet switch "CONDITIONS: switch case"
 				// code block
 		}
 snippet array-true "CONDITIONS: check if array has value"
-		if (!array.length) {
+		// if only
+		if (!!array.length) {
 			console.log('true');
 		}
 
-		// OR
+		// if-else
+		if (array.length) {
+			console.log('true')
+		} else {
+			console.log('false')
+		}
+
+		// validator
+		const hasValue = !!array.length
+
+		// readable
+		if (array.length != 0) {
+			// code here
+		}
 
 		if (array.length > 0) {
 			// code here
