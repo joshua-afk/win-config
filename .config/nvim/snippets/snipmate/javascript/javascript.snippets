@@ -6,6 +6,7 @@
 #    = ARRAY
 #    = CONDITIONS
 #    = LOOPS
+#    = PROMISE
 #    = STANDARD
 #    = TRANSFORM
 #    = CHECKERS
@@ -89,6 +90,17 @@ snippet forof "LOOPS: forof loop (values)"
 		}
 snippet foreach "LOOPS: foreach loop 1 liner"
 		array1.forEach(element => console.log(element));
+# == PROMISE ==
+snippet promise-then-catch "PROMISE: Object represents the eventual completion (or failure) of an asynchronous operation and its resulting value."
+		new Promise((resolve, reject) => {
+			throw new Error('Attachment cannot be empty, Please add attachment.')
+		})
+		.then(function() {
+			console.log('hello')
+		})
+		.catch((err) => {
+			console.error(\`Error: ${err.message}\`);
+		});
 # == STANDARD ==
 snippet cl "STANDARD: console.log"
 		console.log($1)
