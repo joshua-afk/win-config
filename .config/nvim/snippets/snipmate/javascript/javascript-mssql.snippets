@@ -12,18 +12,24 @@ snippet mssql-request-select "MSSQL: select query"
 			.input('company_id', sql.Int, sess.company_id)
 			.query('SELECT Id, CompanyId, TrainingName, TrainingCode, StartDate, EndDate, StartTime, EndTime, TrainingVenue, TrainingDescription, Active FROM tblCustomTGITrainings WHERE Id = @id AND CompanyId = @company_id')
 snippet mssql-request-select-in "MSSQL: select in query"
-    const ids = [1, 2, 3]
     const request = this._conn.request()
 
-    for (const i in ids) {
-      request.input(\`id${i}\`, sql.Int, ids[i])
+    let queryInputsPlaceholder = []
+
+    for (const i in attributesIdToDelete) {
+      const id = attributesIdToDelete[i]
+      const key = \`id${i}\`
+
+      request.input(key, sql.Int, id)
+
+      queryInputsPlaceholder.push(\`@${key}\`)
     }
 
-    const placeholders = ids.map((id, i) => \`@id${i}\`).join(',')
-
-    const result = await request.query(\`SELECT *
+    const result = await request.query(\`SELECT * 
               FROM tblCustomTGIInteractJSAttributes
-              WHERE Id IN (${placeholders})\`)
+              WHERE Id IN (${queryInputsPlaceholder.join(',')})\`)
+
+    console.log('result', result)
 snippet mssql-request-insert "MSSQL: insert query"
 		await sqlConn.request()
 			.input('training_id', sql.Int, params.id)
