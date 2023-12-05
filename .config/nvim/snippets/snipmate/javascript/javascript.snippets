@@ -5,6 +5,8 @@
 #  = VANILLA/STANDARD
 #    = ARRAY
 #    = CONDITIONS
+#    = DOCUMENT
+#    = FUNCTION
 #    = LOOPS
 #    = PROMISE
 #    = STANDARD
@@ -76,6 +78,14 @@ snippet array-true "CONDITIONS: check if array has value"
 		if (array.length > 0) {
 			// code here
 		}
+# == DOCUMENT ==
+snippet querySelector "DOCUMENT: returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned. "
+		querySelector('[data-element-type]')
+snippet querySelectorAll "DOCUMENT: returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors."
+		querySelectorAll('[data-element-type]')
+# == FUNCTION ==
+snippet arrow-function "FUNCTION: different styles of arrow function"
+		const arrowFunction = _ => console.log(\`sample\`)
 # == LOOPS ==
 snippet for "LOOP: for loop"
 		for (let i = 0; obj < obj.length; i++) {
