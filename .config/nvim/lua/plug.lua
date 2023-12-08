@@ -28,6 +28,7 @@ Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 
 -- Linters
+Plug 'dense-analysis/ale'
 Plug 'mfussenegger/nvim-lint'
 Plug 'digitaltoad/vim-pug'
 Plug 'jwalton512/vim-blade'
@@ -62,6 +63,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
+
+Plug 'natecraddock/workspaces.nvim'
+-- Plug 'nvim-telescope/telescope-project.nvim'
 
 vim.call('plug#end')
 
