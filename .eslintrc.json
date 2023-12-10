@@ -1,13 +1,18 @@
 {
   "env": {
-    "commonjs": true,
     "browser": true,
+    "commonjs": true,
     "es2021": true,
+    "es6": true,
     "node": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "array-bracket-spacing": [2, "never"],
@@ -24,7 +29,7 @@
     "no-unused-vars": 1,
     "no-use-before-define": [2, "nofunc"],
     "object-curly-spacing": [2, "never"],
-    "quotes": [2, "single", "avoid-escape"],
+    "quotes": [2, "single"],
     "no-var": 1,
     "semi": [2, "never"],
     "keyword-spacing": [2, {"before": true, "after": true}],
