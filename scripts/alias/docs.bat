@@ -1,3 +1,3 @@
 @echo off
 
-explorer.exe %USERPROFILE%/Documents
+explorer.exe %USERPROFILE%\Documents

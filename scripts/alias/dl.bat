@@ -1,3 +1,3 @@
 @echo off
 
-explorer.exe %USERPROFILE%/Downloads
+explorer.exe %USERPROFILE%\Downloads

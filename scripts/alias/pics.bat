@@ -1,3 +1,3 @@
 @echo off
 
- explorer.exe %USERPROFILE%/Pictures
+ explorer.exe %USERPROFILE%\Pictures
