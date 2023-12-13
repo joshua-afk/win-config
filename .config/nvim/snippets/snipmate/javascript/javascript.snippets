@@ -6,6 +6,7 @@
 #    = ARRAY
 #    = CONDITIONS
 #    = DOCUMENT
+#    = ELEMENT
 #    = FUNCTION
 #    = LOOPS
 #    = PROMISE
@@ -44,7 +45,7 @@ snippet ifelse "CONDITIONS: ifelse statement"
 			$0
 		}
 snippet switch "CONDITIONS: switch case"
-		switch(expression) {
+		switch (expression) {
 			case x:
 				// code block
 				break;
@@ -79,10 +80,13 @@ snippet array-true "CONDITIONS: check if array has value"
 			// code here
 		}
 # == DOCUMENT ==
-snippet querySelector "DOCUMENT: returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned. "
+snippet query-selector "DOCUMENT: returns the first Element within the document that matches the specified selector, or group of selectors. If no matches are found, null is returned"
 		querySelector('[data-element-type]')
-snippet querySelectorAll "DOCUMENT: returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors."
+snippet query-selector-all "DOCUMENT: returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors"
 		querySelectorAll('[data-element-type]')
+# == ELEMENT ==
+snippet get-attribute "ELEMENT: returns the value of a specified attribute on the element"
+		getAttribute('[data-element-type]')
 # == FUNCTION ==
 snippet arrow-function "FUNCTION: different styles of arrow function"
 		const arrowFunction = _ => console.log(\`sample\`)
@@ -270,7 +274,7 @@ snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specifi
 snippet dom-remove-attribute "EVENTS: removes the attribute with the specified name from the element"
 		element.removeAttribute(attributeName)
 snippet dom-class-list "EVENTS: collection of the class attributes of the element"
-		element.setAttribute(name, value)
+		element.classList
 snippet dom-add-class "EVENTS: add class to element class list"
 		element.classList.add('enabled')
 snippet dom-remove-class "EVENTS: remove class to element class list"
@@ -333,17 +337,17 @@ snippet date-date-parse
 snippet copy-object
 		// spread method
 		let obj2 = {...obj1}
-snippets string-array-to-array
+snippet string-array-to-array
 		// Needs to be double quote
     const stringArray = '["PDF", "DOC", "DOCX", "BMP" "XLS", "XLSX", "CSV", "TXT" "JPG", "JPEG", "TIF", "RTF" "TIFF", "GIF", "PNG", "ZIP"]'
     const parsedArray = JSON.parse(stringArray)
-snippets concatinate-url
+snippet concatinate-url
 		let url = \`/api/download_document\`
 		url += \`?hash=${String(pdf.hash)}\`
 		url += \`&originalFileName=${originalFileName}\`
 		url += \`&storageFileName=${storageFileName}\`
 # == CUSTOM-OUTPUTS ==
-snippet customroute
+snippet custom-route
 		custom?custom_url=custom_employee/import
 snippet dum
 		console.log('dummy output!')
@@ -362,3 +366,10 @@ snippet custom-array-remove-item "EVENTS: sets the value of an attribute on the 
 		if (indexToRemove !== -1) {
 			arrayName.splice(indexToRemove, 1);
 		}
+snippet custom-array-compare-remove "EVENTS: remove all items from first array based on second array"
+		let array1 = [1, 2, 3, 4, 5]
+		let array2 = [3, 4, 5, 6, 7]
+
+		array1 = array1.filter(item => !array2.includes(item))
+
+		console.log(array1) // Output: [1, 2]
