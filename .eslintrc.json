@@ -26,7 +26,7 @@
     "no-extend-native": 2,
     "no-mixed-spaces-and-tabs": 2,
     "no-trailing-spaces": 2,
-    "no-unused-vars": 1,
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "no-use-before-define": [2, "nofunc"],
     "object-curly-spacing": [2, "always"],
     "quotes": [2, "single"],
