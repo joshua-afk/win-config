@@ -65,20 +65,22 @@ snippet temptable
 snippet checksp
 		sp_helptext uspImportEmployees
 #  =COLUMNS
-snippet int
+snippet type-int
 		[Id] INT IDENTITY (1, 1) NOT NULL,
 		EmployeeId INT NOT NULL,
-snippet varchar
+snippet type-varchar
 	  Description VARCHAR(250) NULL,
-snippet datetime
+snippet type-text
+	  [Body] TEXT NULL,
+snippet type-datetime
 		CreationDate DATETIME NOT NULL,
-snippet image
+snippet type-image
 		File IMAGE NULL,
-snippet bit
+snippet type-bit
     IsActive BIT NOT NULL DEFAULT (0),
-snippet money
+snippet type-money
     Rate MONEY NOT NULL,
-snippet float
+snippet type-float
 		EmployeeId FLOAT NOT NULL,
 #  =TRICKS
 snippet create-snapshot
@@ -268,3 +270,6 @@ snippet formevents
 
 
 		GO
+snippet change-column-datatype
+		ALTER TABLE tblEmployees
+		ALTER COLUMN Address TEXT NULL
