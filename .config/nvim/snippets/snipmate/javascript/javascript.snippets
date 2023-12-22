@@ -272,6 +272,12 @@ snippet event-mouseover "EVENTS: fired at an Element when a pointing device (suc
 		// OR
 
 		document.addEventListener("mouseover ", (event) => {});
+snippet event-oninput "EVENTS: event fires when the value of an <input>, <select>, or <textarea> element has been changed as a direct result of a user action (such as typing in a textbox or checking a checkbox)."
+		element.oninput = e => {}
+
+		// OR
+
+		element.addEventListener("input", (event) => {})
 # == HTML-DOM ==
 snippet dom-set-attribute "EVENTS: sets the value of an attribute on the specified element"
 		element.setAttribute(name, value)
