@@ -13,6 +13,9 @@ Plug 'notjedi/nvim-rooter.lua'
 Plug 'zegervdv/nrpattern.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'numToStr/Comment.nvim'
+Plug 'mason-org/mason-registry'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 
 -- Navigation
 Plug('mg979/vim-visual-multi', {branch = 'master'})
