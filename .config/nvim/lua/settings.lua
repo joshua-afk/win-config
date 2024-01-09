@@ -4,7 +4,7 @@ opt = vim.opt
 api = vim.api
 fn = vim.fn
 
-o.t_Co=256
+-- o.t_Co=256
 o.encoding='UTF-8'
 o.hidden=true
 o.cmdheight=1
