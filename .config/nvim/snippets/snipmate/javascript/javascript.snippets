@@ -356,6 +356,14 @@ snippet concatinate-url
 		url += \`?hash=${String(pdf.hash)}\`
 		url += \`&originalFileName=${originalFileName}\`
 		url += \`&storageFileName=${storageFileName}\`
+snippet remove-px
+		// Removes the text and retain the number
+		parseInt(element.style.width, 10)
+
+		// OR
+
+		// For decimals
+		parseFloat(element.style.width, 10)
 # == CUSTOM-OUTPUTS ==
 snippet custom-route
 		custom?custom_url=custom_employee/import
