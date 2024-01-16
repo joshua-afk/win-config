@@ -13,7 +13,17 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function()
-	use 'wbthomason/packer.nvim'
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+
+	-- Theme
+	use { "catppuccin/nvim", as = "catppuccin" }
+  -- use {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  -- }
 
 	-- Core
   use { 'michaelb/sniprun', run = 'bash ./install.sh'}
@@ -24,27 +34,23 @@ return require('packer').startup(function()
       ts_update()
     end,
   }
-	
+
   -- LSP & Snippets
 	use 'neovim/nvim-lspconfig'
   use({
     "L3MON4D3/LuaSnip",
     tag = "v2.*",
-    run = "make install_jsregexp"
+    -- run = "make install jsregexp"
   })
   use {'akinsho/bufferline.nvim', tag = "v3.*"}
 
-	-- Theme
-	use { "catppuccin/nvim", as = "catppuccin" }
-  use {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  }
-
   -- File Explorer
-  use { 'nvim-telescope/telescope.nvim', tag = '0.1.x' }
+  -- use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use { 'nvim-telescope/telescope-ui-select.nvim' }
 
   -- Extension for plugins
   use {

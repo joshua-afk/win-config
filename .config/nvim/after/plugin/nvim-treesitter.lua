@@ -8,7 +8,6 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "c", "rust" },
   highlight = {
     enable = true,
-    disable = { "c", "rust" },
     disable = function(lang, buf)
         local max_filesize = 150 * 1024 -- 150 KB
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
