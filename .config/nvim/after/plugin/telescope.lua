@@ -80,20 +80,21 @@ telescope.load_extension("ui-select")
 -- File Pickers
 api.nvim_set_keymap('n', '<leader>ff', ':lua require("telescope.builtin").find_files({no_ignore=true}) <cr>', options)
 api.nvim_set_keymap('n', '<leader>fg', ':lua require("telescope.builtin").live_grep() <cr>', options)
+api.nvim_set_keymap('n', '<leader>fs', ':lua require("telescope.builtin").grep_string() <cr>', options)
 api.nvim_set_keymap('n', '<leader>fb', ':lua require("telescope.builtin").buffers() <cr>', options)
 api.nvim_set_keymap('n', '<leader>fh', ':lua require("telescope.builtin").help_tags() <cr>', options)
 api.nvim_set_keymap('n', '<leader>f]', ':lua require("telescope.builtin").lsp_definitions() <cr>', options)
 
 -- Git
-api.nvim_set_keymap('n', '<leader>fc', ':lua require("telescope.builtin").git_commits() <cr>', options)
-api.nvim_set_keymap('n', '<leader>fgb', ':lua require("telescope.builtin").git_branches() <cr>', options)
-api.nvim_set_keymap('n', '<leader>fs', ':lua require("telescope.builtin").git_status() <cr>', options)
+-- api.nvim_set_keymap('n', '<leader>fc', ':lua require("telescope.builtin").git_commits() <cr>', options)
+-- api.nvim_set_keymap('n', '<leader>fgb', ':lua require("telescope.builtin").git_branches() <cr>', options)
+-- api.nvim_set_keymap('n', '<leader>fs', ':lua require("telescope.builtin").git_status() <cr>', options)
 
 -- Luasnip
 api.nvim_set_keymap('n', '<leader>snip', ':Telescope luasnip <cr>', options)
 
 -- Flutter
-api.nvim_set_keymap('n', '<leader>fl', ':lua require("telescope").extensions.flutter.commands() <cr>', options)
+-- api.nvim_set_keymap('n', '<leader>fl', ':lua require("telescope").extensions.flutter.commands() <cr>', options)
 
 -- Misc
 api.nvim_set_keymap('n', '<leader>fr', ':Telescope resume <cr>', options)
