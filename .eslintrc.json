@@ -15,24 +15,26 @@
     }
   },
   "rules": {
-    "array-bracket-spacing": [2, "never"],
-    "brace-style": [2, "1tbs"],
+    "array-bracket-spacing": [2, "always"],
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
     "camelcase": 1,
     "computed-property-spacing": [2, "never"],
-    "curly": 2,
     "eol-last": 2,
     "eqeqeq": [2, "smart"],
+    "keyword-spacing": [2, {"before": true, "after": true}],
     "new-cap": 1,
     "no-extend-native": 2,
+    "no-global-assign": "error",
     "no-mixed-spaces-and-tabs": 2,
     "no-trailing-spaces": 2,
+    "no-undef": "error",
     "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
     "no-use-before-define": [2, "nofunc"],
+    "no-var": 1,
+    "nonblock-statement-body-position": ["error", "beside"],
     "object-curly-spacing": [2, "always"],
     "quotes": [2, "single"],
-    "no-var": 1,
     "semi": [2, "never"],
-    "keyword-spacing": [2, {"before": true, "after": true}],
     "space-unary-ops": 2
   }
 }
