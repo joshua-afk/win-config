@@ -22,7 +22,10 @@ start cmder.exe
 :: start \"Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe
 
 :: ADS
-%app_data%\"Programs\Azure Data Studio\azuredatastudio.exe
+%app_data%\Programs\"Azure Data Studio\azuredatastudio.exe
 
 :: Obsidian
-%app_data%\Obsidian\Obsidian.exe
+REM %app_data%\Obsidian\Obsidian.exe
+
+:: Zoom
+%USERPROFILE%\AppData\Roaming\Zoom\bin\Zoom.exe
